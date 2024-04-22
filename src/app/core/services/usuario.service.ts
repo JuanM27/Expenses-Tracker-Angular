@@ -16,8 +16,13 @@ export class UsuarioService {
   
   constructor(private http: HttpClient) { }
 
-  comprobarLogin(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.apiUrl, usuario).pipe(
+  comprobarLogin(correo: string, contrasena:string): Observable<Usuario> {
+    console.log("Hemos entrado en el servicio");
+    let datosCobinados = {
+      Correo: correo,
+      Contrasena: contrasena
+    }
+    return this.http.post<Usuario>(this.apiUrl, datosCobinados).pipe(
       map((response: any) => this.usuario = response['data'] as Usuario));
   }
 }
