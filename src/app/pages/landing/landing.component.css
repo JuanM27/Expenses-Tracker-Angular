@@ -97,8 +97,9 @@
 }
 
 .introduccion_imagen img {
-  width: 100%;
+  width: 80%;
   height: auto;
+  margin-left: 50px;
 }
 /*ESTILOS PARA EL APARTADO DE TECNOLOGIAS*/
 .tecnologias {
@@ -176,7 +177,7 @@
 
 .viaje {
   background-color: #f5f7fa;
-  height: 85vh;
+  height: 90vh;
 }
 
 .viaje_objetivos {
