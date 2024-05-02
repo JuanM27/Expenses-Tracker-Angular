@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+.titulo {
+  font-family: "lexend", sans-serif;
+  color: #4d4d4d;
+  font-weight: 600;
+}
+
+.texto {
+  font-family: "Inter", sans-serif;
+}
+
 .landing {
   width: 100%;
   height: 100%;
@@ -71,9 +81,7 @@
 
 .introduccion_texto h1 {
   font-size: 3rem;
-  font-weight: 600;
   margin-bottom: 30px;
-  color: #4d4d4d;
 }
 
 .introduccion_descripcion {
@@ -92,27 +100,51 @@
   width: 100%;
   height: auto;
 }
-
-/* Estilos para el slider de tecnologías */
-.tecnologiasSlider {
+/*ESTILOS PARA EL APARTADO DE TECNOLOGIAS*/
+.tecnologias {
+  margin-bottom: 40px;
+  height: 100%;
   width: 100%;
-  height: auto;
+}
+.tecnologias_titulo {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+.tecnologias_subtitulo {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #4d4d4d;
+}
+/* Estilos para el slider de tecnologías */
+
+.tecnologiasSlider {
+  width: 70vw;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  margin-left: 150px;
 }
 
-.tecnologiasSlider_slider-track {
+.tecnologiasSlider .tecnologiasSlider_slider-track {
   display: flex;
-  width: max-content; /* Ajustamos el ancho para adaptarse al contenido */
+  width: calc(200px * 10);
 }
 
+.tecnologiasSlider .tecnologiasSlider_slide {
+  width: 200px;
+}
 .tecnologiasSlider_slide {
-  width: auto; /* Ancho automático para adaptarse al tamaño de las imágenes */
-  margin-right: 20px;
+  margin-right: 70px;
+}
+.tecnologiasSlider .tecnologiasSlider_slide img {
+  width: 100%;
 }
 
-.tecnologiasSlider_slide img {
-  width: 80px; /* Ajusta el tamaño de las imágenes según sea necesario */
-  height: auto; /* Mantenemos la proporción de aspecto */
-  transition: transform 0.3s ease; /* Agregamos una transición para el efecto de slider */
+.tecnologiasSlider:hover .tecnologiasSlider_slider-track {
+  animation: scroll 40s linear infinite;
+  -webkit-animation: scroll 40s linear infinite;
 }
 
 @keyframes scroll {
@@ -121,7 +153,28 @@
     transform: translateX(0);
   }
   100% {
-    -webkit-transform: translateX(calc(-100px * 5));
-    transform: translateX(calc(-100px * 5));
+    -webkit-transform: translateX(calc(-200px * 5));
+    transform: translateX(calc(-200px * 5));
   }
+}
+
+/*SECCION INICA TU VIAJE*/
+.viaje_titulo {
+  text-align: center;
+  padding-top: 30px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  width: 40%;
+  margin: auto;
+}
+.viaje_subtitulo {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #4d4d4d;
+  padding-top: 10px;
+}
+
+.viaje {
+  background-color: #f5f7fa;
+  height: 60vh;
 }
