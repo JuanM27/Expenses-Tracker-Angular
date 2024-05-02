@@ -102,7 +102,7 @@
 }
 /*ESTILOS PARA EL APARTADO DE TECNOLOGIAS*/
 .tecnologias {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   height: 100%;
   width: 100%;
 }
@@ -176,5 +176,90 @@
 
 .viaje {
   background-color: #f5f7fa;
-  height: 60vh;
+  height: 85vh;
+}
+
+.viaje_objetivos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
+  grid-template-rows: 1fr; /* Una sola fila */
+  gap: 80px; /* Espacio entre las celdas */
+  width: 90vw;
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.objetivo1_icono {
+  width: 15%;
+  height: 15%;
+  margin: auto;
+}
+
+.objetivo1_icono img {
+  height: 100%;
+  width: 100%;
+}
+
+.objetivo1_titulo .titulo {
+  font-size: 1.5rem;
+  width: 55%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.objetivo1_texto {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+.objetivo2_icono {
+  width: 15%;
+  height: 15%;
+  margin: auto;
+}
+
+.objetivo2_icono img {
+  height: 100%;
+  width: 100%;
+}
+
+.objetivo2_titulo .titulo {
+  font-size: 1.5rem;
+  width: 55%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.objetivo2_texto {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+.objetivo3_icono {
+  width: 15%;
+  height: 15%;
+  margin: auto;
+}
+
+.objetivo3_icono img {
+  height: 100%;
+  width: 100%;
+}
+
+.objetivo3_titulo .titulo {
+  font-size: 1.5rem;
+  width: 55%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.objetivo3_texto {
+  width: 90%;
+  margin: auto;
+  text-align: center;
 }
