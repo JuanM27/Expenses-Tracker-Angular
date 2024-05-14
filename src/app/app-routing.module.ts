@@ -4,12 +4,13 @@ import { LoginComponent } from './pages/login/login.component'; // Importa el co
 import { LandingComponent } from './pages/landing/landing.component'; // Importa el componente de la página
 import { HomeComponent } from './pages/home/home.component'; // Importa el componente de la página
 import { RegisterComponent } from './pages/register/register.component'; // Importa el componente de la página
+import { AuthGuard } from './core/guards/auth.guards';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' }, // Redirige a la ruta del login al inicio
   { path: 'login', component: LoginComponent }, // Define la ruta para el componente de login
   {path: 'landing', component: LandingComponent}, // Define la ruta para el componente de landingç
-  {path: 'home', component: HomeComponent}, // Define la ruta para el componente de home
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]}, // Define la ruta para el componente de home
   {path: 'register', component: RegisterComponent} // Define la ruta para el componente de register
   //
 ];

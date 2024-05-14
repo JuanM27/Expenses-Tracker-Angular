@@ -19,7 +19,14 @@ export class LoginComponent {
   async onLogin(){
     this.usuarioService.comprobarLogin(this.correo,this.contrasena).subscribe(
       (response) => {
-        console.log(response);
+        if(response.ok===true&&response.mensaje==="Login correcto"){
+          this.router.navigate(["/home"])
+        }else if(response.ok===false&&response.mensaje==="Error de login, usuario o contraseña incorrecto"){
+          //Poner un div de usuario y contraseña incorrectos
+          console.log("Usuario o contraseña incorrectos")
+        }else{
+          //Poner un div de error de servidor
+        }
       }
     );
   }

@@ -15,29 +15,48 @@
                 class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                 type="nombre"
                 placeholder="Nombre completo"
+                [(ngModel)]="nombre"
+                name="nombre"
               />
               <input
                 class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                 type="email"
                 placeholder="Email"
+                [(ngModel)]="correo"
+                name="correo"
               />
               <input
                 class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                type="contrasena"
+                type="password"
                 placeholder="Contraseña"
+                [(ngModel)]="contrasena"
+                name="contrasena"
               />
               <input
                 class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                type="confirmar-contrasena"
+                type="password"
                 placeholder="Confirmar contraseña"
+                [(ngModel)]="confirmarContrasena"
+                name="confirmarContrasena"
               />
               <input
                 class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                type="objetivo"
+                type="number"
                 placeholder="Objetivo de gasto"
+                [(ngModel)]="objetivo"
+                name="objetivo"
               />
+              <!-- Mensaje de error -->
+              <div *ngIf="camposIncompletos" class="text-red-500 mt-2">
+                Por favor, completa todos los campos.
+              </div>
+              <!-- Mensaje de error si las contraseñas no coinciden -->
+              <div *ngIf="contrasenasNoCoinciden" class="text-red-500 mt-2">
+                Las contraseñas no coinciden.
+              </div>
               <button
                 class="mt-5 tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                type="submit"
               >
                 <svg
                   class="w-6 h-6 -ml-2"
