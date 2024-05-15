@@ -201,9 +201,21 @@
                     </div>
                   </div>
                   <p class="text-sm text-blueGray-500 mt-4">
-                    <span class="text-red-500 mr-2"
-                      ><i class="fas fa-arrow-down"></i> 3.48%</span
-                    ><span class="whitespace-nowrap">Vas bien</span>
+                    <span
+                      class="text-{{
+                        porcentajeObjetivo > 100 ? 'red' : 'emerald'
+                      }}-500 mr-2"
+                      ><i
+                        class="fas fa-arrow-{{
+                          porcentajeObjetivo > 100 ? 'up' : 'down'
+                        }}"
+                      ></i>
+                      {{ porcentajeObjetivo }}%</span
+                    ><span class="whitespace-nowrap">{{
+                      porcentajeObjetivo > 100
+                        ? "Te has pasado de tu obejetivo"
+                        : "Todavía no te has pasado"
+                    }}</span>
                   </p>
                 </div>
               </div>
@@ -250,7 +262,9 @@
                       <h5 class="text-blueGray-400 uppercase font-bold text-xs">
                         PORCENTAJE
                       </h5>
-                      <span class="font-bold text-xl">49,65%</span>
+                      <span class="font-bold text-xl"
+                        >{{ porcentajeObjetivo }}%</span
+                      >
                     </div>
                     <div class="relative w-auto pl-4 flex-initial">
                       <div
@@ -261,9 +275,21 @@
                     </div>
                   </div>
                   <p class="text-sm text-blueGray-500 mt-4">
-                    <span class="text-emerald-500 mr-2"
-                      ><i class="fas fa-arrow-up"></i> 12%</span
-                    ><span class="whitespace-nowrap">Since last month</span>
+                    <span
+                      class="text-{{
+                        porcentajeObjetivo > 100 ? 'red' : 'emerald'
+                      }}-500 mr-2"
+                      ><i
+                        class="fas fa-arrow-{{
+                          porcentajeObjetivo > 100 ? 'up' : 'down'
+                        }}"
+                      ></i>
+                      {{ porcentajeObjetivo }}%</span
+                    ><span class="whitespace-nowrap">{{
+                      porcentajeObjetivo > 100
+                        ? "Te has pasado de tu obejetivo"
+                        : "Todavía no te has pasado"
+                    }}</span>
                   </p>
                 </div>
               </div>
@@ -396,7 +422,7 @@
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                      {{ gasto.ID_Categoria }}
+                      {{ obtenerNombreCategoria(gasto.ID_Categoria) }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"

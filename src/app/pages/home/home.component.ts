@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { GastoService } from 'src/app/core/services/gasto.service';
 import { Gasto } from 'src/app/core/services/interfaces/gasto';
 import {Usuario} from 'src/app/core/services/interfaces/usuario'
+import { Categoria } from 'src/app/core/services/interfaces/categoria';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
+import { CategoriaService } from 'src/app/core/services/categoria.service';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +13,17 @@ import { UsuarioService } from 'src/app/core/services/usuario.service';
 })
 export class HomeComponent {
   gastos: Gasto[] = [];
+  categorias : Categoria[] = []
   gastoTotalMes: number = 0;
   usuario:Usuario | undefined;
   gastoTotalMesAnterior: number=0;
   porcentajeGastoExtra:number=0;
+  porcentajeObjetivo:number = 0;
 
   constructor(
     private gastoService: GastoService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private categoriaService: CategoriaService
   ) { }
 
   ngOnInit(): void {
@@ -31,13 +36,23 @@ export class HomeComponent {
       this.porcentajeGastoExtra = this.calcularPorcentajeGastoExtra(this.gastoTotalMes, this.gastoTotalMesAnterior);
     });
 
+
     const usuarioId = Number(sessionStorage.getItem("usuario")); // Convert the value to a number
     console.log("el id usuario es: ",usuarioId);
     this.usuarioService.buscarUsuario(usuarioId).subscribe((response) => { // Pass the converted value
       this.usuario = response.data;
-      console.log("el usuario es: ",this.usuario);
+      if (this.usuario && this.usuario.Objetivo_Gasto !== undefined) {
+        this.porcentajeObjetivo = this.calcularPorcentajeObjetivo(this.gastoTotalMes, this.usuario.Objetivo_Gasto);
+      } else {
+        // Si el objetivo de gasto no está definido, establecer el porcentaje objetivo en 0
+        this.porcentajeObjetivo = 0;
+      }
     });
 
+    /**Obtenemos las categorias */
+    this.categoriaService.obtenerCategorias().subscribe((response) => { 
+      this.categorias = response.data;
+    });
   }
 
   calcularGastoTotalMes(): void {
@@ -86,5 +101,20 @@ calcularGastoTotalMesAnterior(): void {
     console.log("El gasto del mes anterior es: ",this.gastoTotalMesAnterior)
 }
 
+calcularPorcentajeObjetivo(gastoTotalActual: any, objetivoGasto: number): number {
+  // Verificar si el objetivo de gasto es mayor que cero para evitar divisiones por cero
+  if (objetivoGasto > 0) {
+    return (gastoTotalActual / objetivoGasto) * 100;
+  } else {
+    // Si el objetivo de gasto es cero o negativo, devolvemos cero
+    return 0;
+  }
+}
+
+/**Funcion para con el Id obtener el nombre de la categoría */
+obtenerNombreCategoria(idCategoria: number): string {
+  const categoria = this.categorias.find(c => c.ID_Categoria === idCategoria);
+  return categoria ? categoria.Nombre : 'Categoría desconocida';
+}
 
 }
