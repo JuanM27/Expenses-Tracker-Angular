@@ -141,7 +141,9 @@
                       <h5 class="text-blueGray-400 uppercase font-bold text-xs">
                         Gasto Actual
                       </h5>
-                      <span class="font-bold text-xl">350,897</span>
+                      <span class="font-bold text-xl"
+                        >{{ gastoTotalMes }}€</span
+                      >
                     </div>
                     <div class="relative w-auto pl-4 flex-initial">
                       <div
@@ -152,9 +154,24 @@
                     </div>
                   </div>
                   <p class="text-sm text-blueGray-500 mt-4">
-                    <span class="text-emerald-500 mr-2"
-                      ><i class="fas fa-arrow-up"></i> 3.48%</span
-                    ><span class="whitespace-nowrap">Since last month</span>
+                    <span
+                      class="text-{{
+                        porcentajeGastoExtra >= 0 ? 'red' : 'emerald'
+                      }}-500 mr-2"
+                      ><i
+                        class="fas fa-arrow-{{
+                          porcentajeGastoExtra >= 0 ? 'up' : 'down'
+                        }}"
+                      ></i>
+                      {{
+                        porcentajeGastoExtra >= 0
+                          ? porcentajeGastoExtra
+                          : -porcentajeGastoExtra
+                      }}%</span
+                    ><span class="whitespace-nowrap"
+                      >{{ porcentajeGastoExtra >= 0 ? "Más" : "Menos" }} que el
+                      mes anterior</span
+                    >
                   </p>
                 </div>
               </div>
@@ -171,7 +188,9 @@
                       <h5 class="text-blueGray-400 uppercase font-bold text-xs">
                         Objetivo
                       </h5>
-                      <span class="font-bold text-xl">2,356</span>
+                      <span class="font-bold text-xl"
+                        >{{ usuario?.Objetivo_Gasto }}€</span
+                      >
                     </div>
                     <div class="relative w-auto pl-4 flex-initial">
                       <div
@@ -363,124 +382,26 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let gasto of gastos">
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                      <div class="flex items-center">
-                        <span class="ml-3 font-bold NaN">Pan</span>
-                      </div>
+                      {{ gasto.Descripcion }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                      <div class="flex items-center">27/01/2024</div>
+                      {{ gasto.Fecha }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                      <div class="flex items-center">Comida</div>
+                      {{ gasto.ID_Categoria }}
                     </td>
                     <td
                       class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                     >
-                      <div class="flex items-center">2$</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">
-                        <span class="ml-3 font-bold NaN">Azúcar</span>
-                      </div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">27/08/2024</div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">Comida</div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">1$</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">
-                        <span class="ml-3 font-bold NaN">Leche</span>
-                      </div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">27/08/2024</div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">Comida</div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">5,99$</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">
-                        <span class="ml-3 font-bold NaN">Manzanas</span>
-                      </div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">27/08/2024</div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">Comida</div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">3$</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">
-                        <span class="ml-3 font-bold NaN">Gasolina</span>
-                      </div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">27/08/2024</div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">Transporte</div>
-                    </td>
-                    <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                    >
-                      <div class="flex items-center">50$</div>
+                      {{ gasto.Cantidad }}€
                     </td>
                   </tr>
                 </tbody>

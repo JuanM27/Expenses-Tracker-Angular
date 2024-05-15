@@ -16,7 +16,7 @@ export class UsuarioService {
 
   private apiUrl = environment.urlNode+'login';
   private apiUrl1 = environment.urlNode+'registrar';
-  private apiUrl2 = environment.urlNode+'autorizado';
+  private apiUrl2 = environment.urlNode+'usuario';
   
   constructor(private http: HttpClient,
     private router: Router
@@ -54,6 +54,13 @@ export class UsuarioService {
       Objetivo: objetivo
     }
     return this.http.post<Usuario>(this.apiUrl1,datosCombinados);
+  }
+
+  buscarUsuario(idUsuario:number){
+    const headers = new HttpHeaders({
+      'Authorization': `${localStorage.getItem("token")}`
+    });
+    return this.http.get<any>(this.apiUrl2+"/"+idUsuario,{headers});
   }
 
 }
