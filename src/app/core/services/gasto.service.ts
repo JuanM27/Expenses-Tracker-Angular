@@ -14,7 +14,8 @@ export class GastoService {
   private token: string = localStorage.getItem("token") ?? '';
 
   private apiUrl = environment.urlNode + 'gastos';
-  private apiUrl1 = environment.urlNode+'gastos-categoria'
+  private apiUrl1 = environment.urlNode+'gastos-categoria';
+  private apiUrl2 = environment.urlNode + 'nuevoGasto';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -33,5 +34,13 @@ export class GastoService {
     });
 
     return this.http.get<any>(`${this.apiUrl}/${idCategoria}`, { headers });
+  }
+
+  crearGasto(gasto: any): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `${this.token}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl2}/${this.idUsuario}`, gasto, {headers})
   }
 }

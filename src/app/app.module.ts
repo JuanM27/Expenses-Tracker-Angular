@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'; 
 import { LandingComponent } from './pages/landing/landing.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -13,7 +14,6 @@ import { GastosComponent } from './pages/gastos/gastos.component';
 import { SidebarComponent } from './pages/sidebar/sidebar.component';
 import { GraficaBarrasComponent } from './pages/grafica-barras/grafica-barras.component';
 import { GraficaDonutComponent } from './pages/grafica-donut/grafica-donut.component';
-
 
 
 @NgModule({
@@ -31,7 +31,8 @@ import { GraficaDonutComponent } from './pages/grafica-donut/grafica-donut.compo
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
