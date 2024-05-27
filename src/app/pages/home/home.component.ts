@@ -111,10 +111,4 @@ calcularPorcentajeObjetivo(gastoTotalActual: any, objetivoGasto: number): number
   }
 }
 
-/**Funcion para con el Id obtener el nombre de la categoría */
-obtenerNombreCategoria(idCategoria: number): string {
-  const categoria = this.categorias.find(c => c.ID_Categoria === idCategoria);
-  return categoria ? categoria.Nombre : 'Categoría desconocida';
-}
-
 }

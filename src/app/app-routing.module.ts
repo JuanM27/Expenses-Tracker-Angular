@@ -5,6 +5,7 @@ import { LandingComponent } from './pages/landing/landing.component'; // Importa
 import { HomeComponent } from './pages/home/home.component'; // Importa el componente de la página
 import { GastosComponent } from './pages/gastos/gastos.component'; // Importa el componente de la página
 import { RegisterComponent } from './pages/register/register.component'; // Importa el componente de la página
+import { PerfilComponent } from './pages/perfil/perfil.component';
 import { AuthGuard } from './core/guards/auth.guards';
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'landing', component: LandingComponent}, // Define la ruta para el componente de landingç
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]}, // Define la ruta para el componente de home
   {path: 'register', component: RegisterComponent}, // Define la ruta para el componente de register
-  {path: 'gastos', component: GastosComponent} // Define la ruta para el componente de register
+  {path: 'gastos', component: GastosComponent,canActivate: [AuthGuard]},// Define la ruta para el componente de register
+  {path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]}
   //
 ];
 

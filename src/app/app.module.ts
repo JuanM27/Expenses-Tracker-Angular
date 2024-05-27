@@ -13,6 +13,8 @@ import { GastosComponent } from './pages/gastos/gastos.component';
 import { SidebarComponent } from './pages/sidebar/sidebar.component';
 import { GraficaBarrasComponent } from './pages/grafica-barras/grafica-barras.component';
 import { GraficaDonutComponent } from './pages/grafica-donut/grafica-donut.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { TablaGastosComponent } from './pages/tabla-gastos/tabla-gastos.component';
 
 
 
@@ -25,7 +27,7 @@ import { GraficaDonutComponent } from './pages/grafica-donut/grafica-donut.compo
     RegisterComponent,
     GastosComponent,
     SidebarComponent,    
-    GraficaBarrasComponent, GraficaDonutComponent
+    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent
   ],
   imports: [
     BrowserModule,
