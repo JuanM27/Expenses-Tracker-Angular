@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'; 
 import { LandingComponent } from './pages/landing/landing.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -15,7 +16,6 @@ import { GraficaBarrasComponent } from './pages/grafica-barras/grafica-barras.co
 import { GraficaDonutComponent } from './pages/grafica-donut/grafica-donut.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { TablaGastosComponent } from './pages/tabla-gastos/tabla-gastos.component';
-
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import { TablaGastosComponent } from './pages/tabla-gastos/tabla-gastos.componen
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
