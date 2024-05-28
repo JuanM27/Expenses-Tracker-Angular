@@ -4,7 +4,7 @@ import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { GastoService } from 'src/app/core/services/gasto.service';
 import { Categoria } from 'src/app/core/services/interfaces/categoria';
 import { initFlowbite } from 'flowbite';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-gastos',
@@ -25,10 +25,11 @@ export class GastosComponent {
     private fb: FormBuilder,
     private gastoService: GastoService,
     private categoriaService: CategoriaService,
+    private toastr: ToastrService
   ) {
     this.gastoForm = this.fb.group({
       Descripcion: ['', Validators.required],
-      Cantidad: [0, [Validators.required, Validators.min(0.01)]],
+      Cantidad: [0, [Validators.required, Validators.pattern('^[0-9]+$'), Validators.min(1)]],
       Fecha: ['', Validators.required],
       ID_Categoria: [0, Validators.required],
     });
@@ -43,7 +44,9 @@ export class GastosComponent {
     const nuevoGasto = this.gastoForm.value;
     this.gastoService.crearGasto(nuevoGasto).subscribe(response => {
       this.gastoForm.reset();
+      this.showSuccess();
     }, error => {
+      this.showError();
       console.error('Error al crear el gasto', error);
     });
   }
@@ -54,7 +57,16 @@ export class GastosComponent {
         this.categorias = response.data;
       });
     }
+
+    showSuccess() {
+      this.toastr.success('Gasto creado con éxito!', 'Operación exitosa');
+    }
+
+    showError() {
+      this.toastr.error('Error al crear el gasto!', 'Operación fallida');
+    }
   }
+  
   
 
 
