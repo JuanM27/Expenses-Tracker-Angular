@@ -29,9 +29,11 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
       this.gastos.unshift(nuevoGasto.data);
       this.ordenarGastos();
       this.filterGastos();
+      console.log("Los gastos son: ", this.gastos);
     });
   }
 
+  /**Si cambia algo en searchQuery se activa automaticamente la función de filtrado */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['searchQuery']) {
       this.filterGastos();
@@ -59,9 +61,9 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   obtenerNombreCategoria(idCategoria: number): string {
-    const categoria = this.categorias.find(c => c.ID_Categoria === idCategoria);
+    const categoria = this.categorias.find(c => c.ID_Categoria == idCategoria);
     return categoria ? categoria.Nombre : 'Categoría desconocida';
-  }
+  }  
 
   ordenarGastos(): void {
     this.gastos.sort((a, b) => {
@@ -79,7 +81,6 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
         this.obtenerCategoriaPorId(gasto.ID_Categoria).Nombre.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         gasto.Cantidad.toString().includes(this.searchQuery.toLowerCase()) ||
         this.formatearFecha(gasto.Fecha.toString()).toLowerCase().includes(this.searchQuery.toLowerCase())
-
       );
     } else {
       this.filteredGastos = this.gastos;
@@ -90,7 +91,6 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     return this.categorias.find(categoria => categoria.ID_Categoria === idCategoria);
   }
   
-
   formatearFecha(fecha: string): string {
     const fechaObjeto = new Date(fecha);
     const dia = fechaObjeto.getDate().toString().padStart(2, '0');

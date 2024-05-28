@@ -37,7 +37,7 @@ export class GastosComponent {
   onSubmit(): void {
     const nuevoGasto = this.gastoForm.value;
     this.gastoService.crearGasto(nuevoGasto).subscribe(response => {
-      console.log('Gasto creado exitosamente', response);
+      this.gastoForm.reset();
     }, error => {
       console.error('Error al crear el gasto', error);
     });
