@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { GastoService } from 'src/app/core/services/gasto.service';
 import { Categoria } from 'src/app/core/services/interfaces/categoria';
+import { initFlowbite } from 'flowbite';
 
 
 @Component({
@@ -11,6 +12,10 @@ import { Categoria } from 'src/app/core/services/interfaces/categoria';
   styleUrls: ['./gastos.component.css']
 })
 export class GastosComponent {
+
+  ngAfterViewInit(){
+    initFlowbite();
+  }
 
   gastoForm: FormGroup;
   categorias : Categoria[] = [];
