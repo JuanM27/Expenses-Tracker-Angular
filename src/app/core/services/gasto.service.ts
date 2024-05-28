@@ -15,9 +15,11 @@ export class GastoService {
   private apiUrl = environment.urlNode + 'gastos';
   private apiUrl1 = environment.urlNode + 'gastos-categoria'; // Endpoint corregido
   private apiUrl2 = environment.urlNode + 'nuevoGasto';
-
+  private apiUrl3 = environment.urlNode + 'gasto';
   // Subject para emitir el nuevo gasto agregado
   private gastoAgregadoSubject: Subject<any> = new Subject<any>();
+  private gastoBorradoSource = new Subject<void>();
+  gastoBorrado$ = this.gastoBorradoSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -54,5 +56,15 @@ export class GastoService {
   // Método para suscribirse al Observable de gasto agregado
   gastoAgregado(): Observable<any> {
     return this.gastoAgregadoSubject.asObservable();
+  }
+
+  borrarGasto(idGasto: number) {
+    const headers = new HttpHeaders({
+      'Authorization': `${this.token}`
+    });
+
+    return this.http.delete(`${this.apiUrl3}/${idGasto}`, {headers}).pipe(
+      tap(() => this.gastoBorradoSource.next()) // Emitir evento después de borrar el gasto
+    );
   }
 }

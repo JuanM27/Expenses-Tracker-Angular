@@ -16,6 +16,7 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   gastos: Gasto[] = [];
   filteredGastos: Gasto[] = [];
   gastoAgregadoSubscription: Subscription;
+  gastoBorradoSubscription: Subscription;
 
   constructor(
     private gastoService: GastoService,
@@ -31,6 +32,9 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
       this.filterGastos();
       console.log("Los gastos son: ", this.gastos);
     });
+    this.gastoBorradoSubscription = this.gastoService.gastoBorrado$.subscribe(() => {
+      this.obtenerGastos(); // Actualizar la lista de gastos después de borrar un gasto
+    });
   }
 
   /**Si cambia algo en searchQuery se activa automaticamente la función de filtrado */
@@ -43,6 +47,9 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy(): void {
     if (this.gastoAgregadoSubscription) {
       this.gastoAgregadoSubscription.unsubscribe();
+    }
+    if (this.gastoBorradoSubscription) {
+      this.gastoBorradoSubscription.unsubscribe();
     }
   }
 
@@ -97,5 +104,10 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     const mes = (fechaObjeto.getMonth() + 1).toString().padStart(2, '0');
     const año = fechaObjeto.getFullYear();
     return `${dia}/${mes}/${año}`;
+  }
+
+  borrarGasto(idGasto: number): void {
+    this.gastoService.borrarGasto(idGasto).subscribe(() => {
+    });
   }
 }
