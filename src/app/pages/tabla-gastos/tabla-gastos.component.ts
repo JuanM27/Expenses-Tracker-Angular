@@ -75,12 +75,21 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     if (this.searchQuery) {
       this.filteredGastos = this.gastos.filter(gasto =>
         gasto.Descripcion.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        this.obtenerNombreCategoria(gasto.ID_Categoria).toLowerCase().includes(this.searchQuery.toLowerCase())
+        this.obtenerNombreCategoria(gasto.ID_Categoria).toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        this.obtenerCategoriaPorId(gasto.ID_Categoria).Nombre.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        gasto.Cantidad.toString().includes(this.searchQuery.toLowerCase()) ||
+        this.formatearFecha(gasto.Fecha.toString()).toLowerCase().includes(this.searchQuery.toLowerCase())
+
       );
     } else {
       this.filteredGastos = this.gastos;
     }
   }
+  
+  obtenerCategoriaPorId(idCategoria: number): Categoria {
+    return this.categorias.find(categoria => categoria.ID_Categoria === idCategoria);
+  }
+  
 
   formatearFecha(fecha: string): string {
     const fechaObjeto = new Date(fecha);

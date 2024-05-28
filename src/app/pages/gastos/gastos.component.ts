@@ -33,6 +33,7 @@ export class GastosComponent {
     const inputElement = event.target as HTMLInputElement;
     this.searchQuery = inputElement.value;
   }
+  
   onSubmit(): void {
     const nuevoGasto = this.gastoForm.value;
     this.gastoService.crearGasto(nuevoGasto).subscribe(response => {
