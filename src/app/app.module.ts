@@ -16,7 +16,8 @@ import { GraficaBarrasComponent } from './pages/grafica-barras/grafica-barras.co
 import { GraficaDonutComponent } from './pages/grafica-donut/grafica-donut.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { TablaGastosComponent } from './pages/tabla-gastos/tabla-gastos.component';
-
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TablaGastosComponent } from './pages/tabla-gastos/tabla-gastos.componen
     GastosComponent,
     SidebarComponent,    
     GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,10 @@ import { TablaGastosComponent } from './pages/tabla-gastos/tabla-gastos.componen
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ 
+    provideAnimations(), 
+    provideToastr(), 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
