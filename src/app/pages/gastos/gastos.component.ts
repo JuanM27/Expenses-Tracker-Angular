@@ -13,7 +13,8 @@ import { Categoria } from 'src/app/core/services/interfaces/categoria';
 export class GastosComponent {
 
   gastoForm: FormGroup;
-  categorias : Categoria[] = []
+  categorias : Categoria[] = [];
+  searchQuery: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +29,10 @@ export class GastosComponent {
     });
   }
 
+  onSearch(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.searchQuery = inputElement.value;
+  }
   onSubmit(): void {
     const nuevoGasto = this.gastoForm.value;
     this.gastoService.crearGasto(nuevoGasto).subscribe(response => {

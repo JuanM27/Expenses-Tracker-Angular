@@ -2,7 +2,7 @@ export interface Gasto {
   ID_Gasto: number;
   Cantidad: string;
   Fecha: Date;
-  Descripcion: number;
+  Descripcion: string;
   ID_Usuario: number;
   ID_Categoria:number;
 }

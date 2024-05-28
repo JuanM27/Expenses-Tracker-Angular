@@ -1,51 +1,54 @@
-<div class="w-screen relative flex flex-col min-h-screen">
+<div class="w-full relative flex flex-col min-h-screen">
   <app-sidebar class="h-full"></app-sidebar>
-  <div class="relative md:ml-64 bg-blueGray-100 flex-grow">
-    <nav
-      class="absolute top-0 left-0 w-full z-10 bg-white lg:flex-row lg:flex-nowrap lg:justify-start flex items-center py-1 px-4 lg:bg-transparent"
-    >
-      <div
-        class="w-full mx-auto flex justify-between lg:justify-end lg:flex-nowrap flex-wrap lg:px-6 px-4"
+  <div class="relative md:ml-64 flex-grow">
+    <div class="w-full bg-blue-500 h-16">
+      <nav
+        class="absolute top-0 left-0 w-full z-10 lg:flex-row lg:flex-nowrap lg:justify-start flex items-center py-1 px-4 lg:bg-transparent"
       >
-        <div class="lg:flex lg:w-auto flex-grow items-center">
-          <a
-            href="javascript:;"
-            class="text-blueGray-800 lg:text-white text-sm uppercase inline-block font-semibold my-3"
-            >HOME</a
-          >
+        <div class="w-full mx-auto flex justify-between lg:justify-end lg:flex-nowrap flex-wrap lg:px-6 px-4">
+          <div class="lg:flex lg:w-auto flex-grow items-center">
+            <a
+              href="javascript:;"
+              class="text-blueGray-800 lg:text-white text-sm uppercase inline-block font-semibold my-3"
+              >HOME</a
+            >
+          </div>
+          <div class="items-center flex lg:ml-4">
+            <a class="text-blueGray-500 block" href="javascript:;">
+              <div class="items-center flex">
+                <span
+                  class="w-12 h-12 text-sm text-white bg-blueGray-300 inline-flex items-center justify-center rounded-full"
+                >
+                  <img
+                    alt="..."
+                    class="w-full rounded-full align-middle border-none shadow-lg"
+                    src="https://demos.creative-tim.com/notus-pro-react/static/media/team-1-800x800.fa5a7ac2.jpg"
+                  />
+                </span>
+              </div>
+            </a>
+          </div>
         </div>
-        <div class="items-center flex lg:ml-4">
-          <a class="text-blueGray-500 block" href="javascript:;">
-            <div class="items-center flex">
-              <span
-                class="w-12 h-12 text-sm text-white bg-blueGray-300 inline-flex items-center justify-center rounded-full"
-              >
-                <img
-                  alt="..."
-                  class="w-full rounded-full align-middle border-none shadow-lg"
-                  src="https://demos.creative-tim.com/notus-pro-react/static/media/team-1-800x800.fa5a7ac2.jpg"
-                />
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </nav>
-    <!-- <div class="relative pt-32 pb-32 bg-blue-500"> -->
-      <div class="relative pt-32 pb-32">
-        <!-- <button type="button" class="text-white bg-blue-700 ml-14 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" (click)="añadirGasto()">Añadir Gasto</button>       --> 
-          <div class="px-4 md:px-6 mx-auto w-full"> 
-        <!-- Modal toggle -->
+      </nav>
+    </div>
+    <div class="relative pt-16 pb-32">
+      <div class="px-5 md:px-6 mx-5 w-full">
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
           Añadir Gasto
-        </button>  
-          <div>
-        </div>
+        </button>
       </div>
     </div>
     <div class="px-4 md:px-6 mx-auto w-full -mt-24">
-      <div class="w-full">
-        <app-tabla-gastos class="w-full"></app-tabla-gastos>
+      <div class="px-4 md:px-6 mx-auto w-full -mt-24">
+        <div class="w-full">
+          <input 
+            type="text" 
+            placeholder="Buscar gastos..." 
+            (input)="onSearch($event)" 
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 mb-4"
+          />
+          <app-tabla-gastos [searchQuery]="searchQuery" class="w-full"></app-tabla-gastos>
+        </div>
       </div>
       <footer class="block py-4">
         <div class="container mx-auto px-4">
