@@ -17,6 +17,8 @@ export class UsuarioService {
   private apiUrl = environment.urlNode+'login';
   private apiUrl1 = environment.urlNode+'registrar';
   private apiUrl2 = environment.urlNode+'usuario';
+  private apiUrl3 = environment.urlNode+'imagenPerfil';
+
   
   constructor(private http: HttpClient,
     private router: Router
@@ -61,6 +63,29 @@ export class UsuarioService {
       'Authorization': `${localStorage.getItem("token")}`
     });
     return this.http.get<any>(this.apiUrl2+"/"+idUsuario,{headers});
+  }
+
+  subirImagenPerfil(archivo: File): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `${localStorage.getItem("token")}`
+    });
+
+    const idUsuario = Number(sessionStorage.getItem("usuario"));
+
+    const formData = new FormData();
+    formData.append(`imagenPerfil`, archivo); // Agrega el archivo al FormData
+
+    return this.http.post(this.apiUrl3+"/"+idUsuario, formData, { headers });
+  }
+
+  obtenerImagenPerfil(nombreImagen: string): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Authorization': `${localStorage.getItem("token")}`
+    });
+    
+    console.log("Nombre de la imagen:",nombreImagen);
+
+    return this.http.get(`${this.apiUrl3}/${nombreImagen}`, { headers, responseType: 'blob' });
   }
 
 }
