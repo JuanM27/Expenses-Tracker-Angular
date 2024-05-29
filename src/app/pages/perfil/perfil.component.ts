@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Usuario } from 'src/app/core/services/interfaces/usuario';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { DOCUMENT } from '@angular/common';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-perfil',
@@ -11,7 +12,7 @@ import { DOCUMENT } from '@angular/common';
 
 export class PerfilComponent {
 
-  constructor(private usuarioService: UsuarioService, @Inject(DOCUMENT) private document: Document) {}
+  constructor(private usuarioService: UsuarioService, @Inject(DOCUMENT) private document: Document, private authService: AuthService) {}
 
   usuario: Usuario | undefined;
   imagenPerfil: string | null = null; 
@@ -70,6 +71,12 @@ export class PerfilComponent {
         console.log(response);
       }
     );
+  }
+
+  cerrarSesion(){
+
+    this.authService.logout();
+
   }
 
 }
