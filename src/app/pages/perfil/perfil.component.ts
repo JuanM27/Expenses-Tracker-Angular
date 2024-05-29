@@ -15,14 +15,13 @@ export class PerfilComponent {
 
   usuario: Usuario | undefined;
   imagenPerfil: string | null = null; 
+  
 
   ngOnInit(): void {
     const idUsuario = Number(sessionStorage.getItem("usuario"));
     this.usuarioService.buscarUsuario(idUsuario).subscribe(
       (usuario: any) => {
-        this.usuario = usuario.data;
-        console.log("Este es el usuario ",usuario);
-        
+        this.usuario = usuario.data;        
         // Llamar a obtenerImagenPerfil solo después de que se haya asignado this.usuario
         this.usuarioService.obtenerImagenPerfil(this.usuario?.ImagenPerfil).subscribe(
           (imagen: Blob) => {
@@ -30,7 +29,6 @@ export class PerfilComponent {
             const reader = new FileReader();
             reader.onload = (event: any) => {
               this.imagenPerfil = event.target.result;
-              console.log("Esta es la imagen", this.imagenPerfil);
             };
             reader.readAsDataURL(imagen);
           },
@@ -61,6 +59,15 @@ export class PerfilComponent {
       },
       (error) => {
         console.error('Error al subir la imagen:', error);
+      }
+    );
+  }
+
+  actualizarPerfil(){
+    console.log("holaaa");
+    this.usuarioService.actualizarPerfil(this.usuario).subscribe(
+      (response) => {
+        console.log(response);
       }
     );
   }

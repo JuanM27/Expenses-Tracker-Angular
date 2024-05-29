@@ -18,6 +18,7 @@ export class UsuarioService {
   private apiUrl1 = environment.urlNode+'registrar';
   private apiUrl2 = environment.urlNode+'usuario';
   private apiUrl3 = environment.urlNode+'imagenPerfil';
+  private apiUrl4 = environment.urlNode+'actualizarPerfil';
 
   
   constructor(private http: HttpClient,
@@ -83,9 +84,16 @@ export class UsuarioService {
       'Authorization': `${localStorage.getItem("token")}`
     });
     
-    console.log("Nombre de la imagen:",nombreImagen);
-
     return this.http.get(`${this.apiUrl3}/${nombreImagen}`, { headers, responseType: 'blob' });
+  }
+
+  actualizarPerfil(usuario:Usuario){
+    const headers = new HttpHeaders({
+      'Authorization': `${localStorage.getItem("token")}`
+    });
+
+    console.log("La ruta es, "+ this.apiUrl4)
+    return this.http.put(this.apiUrl4, usuario, { headers });
   }
 
 }
