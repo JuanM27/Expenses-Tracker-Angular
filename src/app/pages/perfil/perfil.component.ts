@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/core/services/interfaces/usuario';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { DOCUMENT } from '@angular/common';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-perfil',
@@ -12,7 +13,12 @@ import { AuthService } from 'src/app/core/services/auth.service';
 
 export class PerfilComponent {
 
-  constructor(private usuarioService: UsuarioService, @Inject(DOCUMENT) private document: Document, private authService: AuthService) {}
+  constructor(
+    private usuarioService: UsuarioService, 
+    @Inject(DOCUMENT) private document: Document,
+    private authService: AuthService,
+    private toastr: ToastrService
+    ) {}
 
   usuario: Usuario | undefined;
   imagenPerfil: string | null = null; 
@@ -58,17 +64,22 @@ export class PerfilComponent {
         // Recargar la página después de subir la imagen
         this.document.location.reload();
       },
-      (error) => {
+      (error) => {        
         console.error('Error al subir la imagen:', error);
+        this.toastr.error('Error al cambiar la imagen!', 'Operación fallida');
       }
     );
   }
 
-  actualizarPerfil(){
-    console.log("holaaa");
+  actualizarPerfil() {
     this.usuarioService.actualizarPerfil(this.usuario).subscribe(
       (response) => {
-        console.log(response);
+        console.log(response); // Manejo de la respuesta exitosa
+        this.toastr.success('Perfil actualizado con éxito', 'Operación exitosa');
+      },
+      (error) => {
+        console.error("Ocurrió un error al actualizar el perfil:", error); // Manejo del error
+        this.toastr.error('Error al actualizar el perfil!', 'Operación fallida');
       }
     );
   }
