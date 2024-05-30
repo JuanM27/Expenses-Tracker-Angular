@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { GastoService } from 'src/app/core/services/gasto.service';
 import { Categoria } from 'src/app/core/services/interfaces/categoria';
@@ -20,6 +20,7 @@ export class GastosComponent {
   gastoForm: FormGroup;
   categorias : Categoria[] = [];
   searchQuery: string = '';
+  editarForm: Form
 
   constructor(
     private fb: FormBuilder,

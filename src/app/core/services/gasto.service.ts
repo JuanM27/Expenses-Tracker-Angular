@@ -19,7 +19,10 @@ export class GastoService {
   // Subject para emitir el nuevo gasto agregado
   private gastoAgregadoSubject: Subject<any> = new Subject<any>();
   private gastoBorradoSource = new Subject<void>();
+  private gastoEditadoSource = new Subject<void>();
+
   gastoBorrado$ = this.gastoBorradoSource.asObservable();
+  gastoEditado$ = this.gastoEditadoSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -65,6 +68,26 @@ export class GastoService {
 
     return this.http.delete(`${this.apiUrl3}/${idGasto}`, {headers}).pipe(
       tap(() => this.gastoBorradoSource.next()) // Emitir evento después de borrar el gasto
+    );
+  }
+
+  obtenerGastoPorId(idGasto: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `${this.token}`
+    });
+
+    return this.http.get<any>(`${this.apiUrl3}/${idGasto}`, {headers});
+  }
+
+  editarGasto (gasto: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `${this.token}`
+    });
+
+    return this.http.put(`${this.apiUrl3}/${gasto.ID_Gasto}`, gasto, {headers}).pipe(
+      tap(() => {
+        this.gastoEditadoSource.next();
+      })
     );
   }
 }

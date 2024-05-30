@@ -4,6 +4,8 @@ import { GastoService } from 'src/app/core/services/gasto.service';
 import { Categoria } from 'src/app/core/services/interfaces/categoria';
 import { Gasto } from 'src/app/core/services/interfaces/gasto';
 import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tabla-gastos',
@@ -17,11 +19,23 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   filteredGastos: Gasto[] = [];
   gastoAgregadoSubscription: Subscription;
   gastoBorradoSubscription: Subscription;
+  gastoEditadoSubscription: Subscription;
+  editarForm: FormGroup;
 
   constructor(
     private gastoService: GastoService,
-    private categoriaService: CategoriaService
-  ) { }
+    private categoriaService: CategoriaService,
+    private fb: FormBuilder,
+    private toastr: ToastrService
+  ) { 
+    this.editarForm = this.fb.group({
+      ID_Gasto: [0, Validators.required],
+      Descripcion: ['', Validators.required],
+      Cantidad: [0, [Validators.required, Validators.pattern('^[0-9]+$'), Validators.min(1)]],
+      Fecha: ['', Validators.required],
+      ID_Categoria: [0, Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.obtenerGastos();
@@ -34,6 +48,9 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     });
     this.gastoBorradoSubscription = this.gastoService.gastoBorrado$.subscribe(() => {
       this.obtenerGastos(); // Actualizar la lista de gastos después de borrar un gasto
+    });
+    this.gastoEditadoSubscription = this.gastoService.gastoEditado$.subscribe(() => {
+      this.obtenerGastos(); // Actualizar la lista de gastos después de editar un gasto
     });
   }
 
@@ -50,6 +67,9 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     }
     if (this.gastoBorradoSubscription) {
       this.gastoBorradoSubscription.unsubscribe();
+    }
+    if (this.gastoEditadoSubscription) {
+      this.gastoEditadoSubscription.unsubscribe();
     }
   }
 
@@ -110,4 +130,37 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     this.gastoService.borrarGasto(idGasto).subscribe(() => {
     });
   }
+
+  pasarInfoGasto(idGasto: number): void {
+    this.gastoService.obtenerGastoPorId(idGasto).subscribe((response) => {
+      this.editarForm.patchValue({
+        ID_Gasto: response.data.ID_Gasto,
+        Descripcion: response.data.Descripcion,
+        Cantidad: response.data.Cantidad,
+        Fecha: response.data.Fecha,
+        ID_Categoria: response.data.ID_Categoria
+      });
+    });
+  }
+
+  editarGasto(): void {
+    const nuevoGasto = this.editarForm.value;
+    this.gastoService.editarGasto(nuevoGasto).subscribe(response => {
+      console.log('Gasto editado con éxito', response);
+      this.editarForm.reset();
+      this.showSuccess();
+    }, error => {
+      this.showError();
+      console.error('Error al editar el gasto', error);
+    });
+  }
+
+  showSuccess() {
+    this.toastr.success('Gasto editado con éxito!', 'Operación exitosa');
+  }
+
+  showError() {
+    this.toastr.error('Error al editar el gasto!', 'Operación fallida');
+  }
+
 }
