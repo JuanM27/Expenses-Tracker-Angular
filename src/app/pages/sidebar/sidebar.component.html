@@ -5,7 +5,7 @@
     class="flex-col min-h-full px-0 flex flex-wrap items-center justify-between w-full mx-auto overflow-y-auto overflow-x-hidden"
   >
     <div
-      class="flex bg-white flex-col items-stretch opacity-100 relative mt-4 overflow-y-auto overflow-x-hidden h-auto z-40 items-center flex-1 rounded w-full"
+      class="flex bg-white flex-col opacity-100 relative mt-4 overflow-y-auto overflow-x-hidden h-auto z-40 items-center flex-1 rounded w-full"
     >
       <a
         routerLink="/home"
@@ -22,31 +22,37 @@
       <div class="md:flex-col md:min-w-full flex flex-col list-none">
         <hr class="my-4 md:min-w-full" />
         <h6
-          class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+          class="md:min-w-full text-blueGray-500 text-l uppercase font-bold block pt-1 pb-4 no-underline"
         >
           Funciones 1
         </h6>
         <a
           routerLink="/gastos"
-          class="text-xs uppercase py-3 font-bold block text-blueGray-800 hover:text-blueGray-500"
+          class="text-l uppercase py-3 font-medium block text-blueGray-800 hover:text-blueGray-500"
         >
-          <i class="fas fa-newspaper mr-2 text-sm text-blueGray-400"></i>
+          <i class="fas fa-newspaper mr-2 text-l text-blueGray-400"></i>
           Añadir gastos
         </a>
 
         <hr class="my-4 md:min-w-full" />
         <h6
-          class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+          class="md:min-w-full text-blueGray-500 text-l uppercase font-bold block pt-1 pb-4 no-underline"
         >
           Funciones del Perfil
         </h6>
         <a
           routerLink="/perfil"
-          class="text-xs uppercase py-3 font-bold block text-blueGray-800 hover:text-blueGray-500"
-          ><i class="fa-regular fa-user mr-2 text-sm text-blueGray-400"></i
+          class="text-l uppercase py-3 font-medium block text-blueGray-800 hover:text-blueGray-500"
+          ><i class="fa-regular fa-user mr-2 text-l text-blueGray-400"></i
           >Perfil</a
         >
       </div>
+      
     </div>
+      <div class="flex justify-end m-4">
+    <button type="button" (click)="cerrarSesion()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-l px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+        Cerrar sesión
+    </button>
+</div>
   </div>
 </nav>

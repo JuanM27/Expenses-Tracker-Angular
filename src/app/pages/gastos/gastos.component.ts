@@ -34,6 +34,7 @@ export class GastosComponent {
       Fecha: ['', Validators.required],
       ID_Categoria: [0, Validators.required],
     });
+
   }
 
   onSearch(event: Event): void {
@@ -67,19 +68,4 @@ export class GastosComponent {
       this.toastr.error('Error al crear el gasto!', 'Operación fallida');
     }
   }
-  
-  
 
-
-
-
-  /* onSubmit() {
-    console.log(this.gastoForm);
-    if (this.gastoForm.valid) {
-      console.log(this.gastoForm.value);
-      // Aquí puedes añadir la lógica para enviar los datos a tu servicio
-      // this.gastoService.añadirGasto(this.gastoForm.value).subscribe();
-    } else {
-      console.log('Formulario no válido');
-    }
-  } */

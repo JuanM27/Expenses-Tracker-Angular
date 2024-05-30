@@ -4,4 +4,5 @@ export interface Usuario {
   Correo: string;
   Objetivo_Gasto: number;
   ImagenPerfil: string;
+  Administrador: boolean;
 }

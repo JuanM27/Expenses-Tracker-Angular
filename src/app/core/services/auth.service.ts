@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,8 @@ import { Router } from '@angular/router';
 export class AuthService {
   
   constructor(
-    private router: Router
+    private router: Router,
+    private usuarioService: UsuarioService
   ) { }
 
   isLoggedIn(): boolean {
@@ -39,4 +41,20 @@ export class AuthService {
 
     this.router.navigate(['/login']); // Si estás utilizando Angular Router
   }
+
+  async isAdmin(): Promise<boolean> {
+    const usuarioId = Number(sessionStorage.getItem("usuario"));
+    try {
+      const response = await this.usuarioService.buscarUsuario(usuarioId).toPromise();
+      if (response.data.Administrador === true) {
+        return true;
+      }else{
+        return false;
+      }
+    } catch (error) {
+      console.error("Error verificando si es administrador", error);
+      return false;
+    }
+  }
+
 }

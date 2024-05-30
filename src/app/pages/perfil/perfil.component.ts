@@ -72,11 +72,4 @@ export class PerfilComponent {
       }
     );
   }
-
-  cerrarSesion(){
-
-    this.authService.logout();
-
-  }
-
 }

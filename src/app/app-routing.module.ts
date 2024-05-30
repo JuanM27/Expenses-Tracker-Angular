@@ -7,15 +7,19 @@ import { GastosComponent } from './pages/gastos/gastos.component'; // Importa el
 import { RegisterComponent } from './pages/register/register.component'; // Importa el componente de la página
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { AuthGuard } from './core/guards/auth.guards';
+import { PaginaAdministradorComponent } from './pages/pagina-administrador/pagina-administrador.component';
+import { AdminGuard } from './core/guards/admin.guars';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' }, // Redirige a la ruta del login al inicio
   { path: 'login', component: LoginComponent }, // Define la ruta para el componente de login
-  {path: 'landing', component: LandingComponent}, // Define la ruta para el componente de landingç
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]}, // Define la ruta para el componente de home
-  {path: 'register', component: RegisterComponent}, // Define la ruta para el componente de register
-  {path: 'gastos', component: GastosComponent,canActivate: [AuthGuard]},// Define la ruta para el componente de register
-  {path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]}
+  { path: 'landing', component: LandingComponent}, // Define la ruta para el componente de landingç
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]}, // Define la ruta para el componente de home
+  { path: 'register', component: RegisterComponent}, // Define la ruta para el componente de register
+  { path: 'gastos', component: GastosComponent,canActivate: [AuthGuard]},// Define la ruta para el componente de register
+  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
+  { path: 'administrador', component: PaginaAdministradorComponent, canActivate: [AuthGuard, AdminGuard] }
+
   //
 ];
 

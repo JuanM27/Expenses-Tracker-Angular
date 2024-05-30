@@ -13,8 +13,7 @@ export class AppComponent implements AfterViewInit{
   ngAfterViewInit(){
     initFlowbite();
   }
-
-  /* ngOnInit(): void {
+  ngAfterContentInit(){
     initFlowbite();
-  } */
+  }
 }

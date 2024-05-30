@@ -18,6 +18,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { TablaGastosComponent } from './pages/tabla-gastos/tabla-gastos.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+import { PaginaAdministradorComponent } from './pages/pagina-administrador/pagina-administrador.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { provideToastr } from 'ngx-toastr';
     RegisterComponent,
     GastosComponent,
     SidebarComponent,    
-    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent
+    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, PaginaAdministradorComponent
     
   ],
   imports: [

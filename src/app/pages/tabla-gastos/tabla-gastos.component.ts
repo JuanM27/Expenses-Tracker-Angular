@@ -7,18 +7,16 @@ import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { initFlowbite } from 'flowbite';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabla-gastos',
   templateUrl: './tabla-gastos.component.html',
   styleUrls: ['./tabla-gastos.component.css']
 })
+
+
 export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
-
-  ngAfterViewInit(){
-    initFlowbite();
-  }
-
 
   @Input() searchQuery: string = '';
   categorias: Categoria[] = [];
@@ -33,7 +31,7 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     private gastoService: GastoService,
     private categoriaService: CategoriaService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) { 
     this.editarForm = this.fb.group({
       ID_Gasto: [0, Validators.required],
@@ -91,6 +89,7 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   obtenerCategorias(): void {
     this.categoriaService.obtenerCategorias().subscribe((response) => {
       this.categorias = response.data;
+      initFlowbite();
     });
   }
 
