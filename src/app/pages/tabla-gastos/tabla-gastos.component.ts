@@ -6,6 +6,7 @@ import { Gasto } from 'src/app/core/services/interfaces/gasto';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-tabla-gastos',
@@ -13,6 +14,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./tabla-gastos.component.css']
 })
 export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
+
+  ngAfterViewInit(){
+    initFlowbite();
+  }
+
+
   @Input() searchQuery: string = '';
   categorias: Categoria[] = [];
   gastos: Gasto[] = [];
