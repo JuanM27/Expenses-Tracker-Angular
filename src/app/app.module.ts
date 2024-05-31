@@ -18,8 +18,12 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { TablaGastosComponent } from './pages/tabla-gastos/tabla-gastos.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+<<<<<<< HEAD
 import { PaginaAdministradorComponent } from './pages/pagina-administrador/pagina-administrador.component';
 
+=======
+import { ImagenPerfilComponent } from './pages/imagen-perfil/imagen-perfil.component';
+>>>>>>> 047d96e89a353ea19471ffa41c8eb888c6039051
 
 @NgModule({
   declarations: [
@@ -30,7 +34,12 @@ import { PaginaAdministradorComponent } from './pages/pagina-administrador/pagin
     RegisterComponent,
     GastosComponent,
     SidebarComponent,    
+<<<<<<< HEAD
     GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, PaginaAdministradorComponent,
+=======
+    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent
+    
+>>>>>>> 047d96e89a353ea19471ffa41c8eb888c6039051
   ],
   imports: [
     BrowserModule,
