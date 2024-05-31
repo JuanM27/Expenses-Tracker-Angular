@@ -20,6 +20,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { PaginaAdministradorComponent } from './pages/pagina-administrador/pagina-administrador.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +30,7 @@ import { PaginaAdministradorComponent } from './pages/pagina-administrador/pagin
     RegisterComponent,
     GastosComponent,
     SidebarComponent,    
-    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, PaginaAdministradorComponent
-    
+    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, PaginaAdministradorComponent,
   ],
   imports: [
     BrowserModule,

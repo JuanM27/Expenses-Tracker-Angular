@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { GastoService } from 'src/app/core/services/gasto.service';
 import { Categoria } from 'src/app/core/services/interfaces/categoria';
@@ -17,6 +17,10 @@ import { Router } from '@angular/router';
 
 
 export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
+
+  ngAfterViewInit(){
+    initFlowbite();
+  }
 
   @Input() searchQuery: string = '';
   categorias: Categoria[] = [];
@@ -45,17 +49,18 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this.obtenerGastos();
     this.obtenerCategorias();
-    this.gastoAgregadoSubscription = this.gastoService.gastoAgregado().subscribe((nuevoGasto) => {
+    this.gastoService.gastoAgregado().subscribe((nuevoGasto) => {
       this.gastos.unshift(nuevoGasto.data);
       this.ordenarGastos();
       this.filterGastos();
-      console.log("Los gastos son: ", this.gastos);
     });
-    this.gastoBorradoSubscription = this.gastoService.gastoBorrado$.subscribe(() => {
+    
+    this.gastoService.gastoBorrado$.subscribe(() => {
       this.obtenerGastos(); // Actualizar la lista de gastos después de borrar un gasto
     });
-    this.gastoEditadoSubscription = this.gastoService.gastoEditado$.subscribe(() => {
-      this.obtenerGastos(); // Actualizar la lista de gastos después de editar un gasto
+
+    this.gastoService.gastoEditado$.subscribe(() => {
+      this.obtenerGastos(); 
     });
   }
 
@@ -102,6 +107,7 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     this.gastos.sort((a, b) => {
       const dateA = new Date(a.Fecha);
       const dateB = new Date(b.Fecha);
+
       return dateB.getTime() - dateA.getTime();
     });
   }
@@ -137,7 +143,7 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  pasarInfoGasto(idGasto: number): void {
+  pasarInfoGasto(idGasto: number): void {  
     this.gastoService.obtenerGastoPorId(idGasto).subscribe((response) => {
       this.editarForm.patchValue({
         ID_Gasto: response.data.ID_Gasto,
@@ -146,15 +152,20 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
         Fecha: response.data.Fecha,
         ID_Categoria: response.data.ID_Categoria
       });
+    },
+    error => {
+      console.error('Error al obtener el gasto', error);
     });
   }
+  
+  
 
   editarGasto(): void {
     const nuevoGasto = this.editarForm.value;
     this.gastoService.editarGasto(nuevoGasto).subscribe(response => {
-      console.log('Gasto editado con éxito', response);
       this.editarForm.reset();
       this.showSuccess();
+      setTimeout(() => window.location.reload(), 2000);
     }, error => {
       this.showError();
       console.error('Error al editar el gasto', error);
