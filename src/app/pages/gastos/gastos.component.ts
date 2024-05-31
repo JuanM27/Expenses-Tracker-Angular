@@ -5,6 +5,8 @@ import { GastoService } from 'src/app/core/services/gasto.service';
 import { Categoria } from 'src/app/core/services/interfaces/categoria';
 import { initFlowbite } from 'flowbite';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { AnadirFormComponent } from '../anadir-form/anadir-form.component';
 
 @Component({
   selector: 'app-gastos',
@@ -23,18 +25,22 @@ export class GastosComponent {
   editarForm: Form
 
   constructor(
-    private fb: FormBuilder,
     private gastoService: GastoService,
     private categoriaService: CategoriaService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog
   ) {
-    this.gastoForm = this.fb.group({
-      Descripcion: ['', Validators.required],
-      Cantidad: [0, [Validators.required, Validators.pattern('^[0-9]+$'), Validators.min(1)]],
-      Fecha: ['', Validators.required],
-      ID_Categoria: [0, Validators.required],
+  }
+
+  abrirModalEditarGasto(): void {
+    // Abre el modal
+    const dialogRef = this.dialog.open(AnadirFormComponent, {
+      width: '400px', // Establece el ancho del modal
     });
 
+    // Escucha el evento de cierre del modal (puede ser útil si necesitas hacer algo después de cerrar el modal)
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   onSearch(event: Event): void {

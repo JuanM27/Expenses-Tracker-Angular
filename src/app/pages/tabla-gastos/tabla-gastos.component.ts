@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { initFlowbite } from 'flowbite';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EditarFormComponent } from '../editar-form/editar-form.component';
 
 @Component({
   selector: 'app-tabla-gastos',
@@ -18,10 +20,6 @@ import { Router } from '@angular/router';
 
 export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
 
-  ngAfterViewInit(){
-    initFlowbite();
-  }
-
   @Input() searchQuery: string = '';
   categorias: Categoria[] = [];
   gastos: Gasto[] = [];
@@ -29,20 +27,26 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   gastoAgregadoSubscription: Subscription;
   gastoBorradoSubscription: Subscription;
   gastoEditadoSubscription: Subscription;
-  editarForm: FormGroup;
+
 
   constructor(
     private gastoService: GastoService,
     private categoriaService: CategoriaService,
-    private fb: FormBuilder,
     private toastr: ToastrService,
+    public dialog: MatDialog
   ) { 
-    this.editarForm = this.fb.group({
-      ID_Gasto: [0, Validators.required],
-      Descripcion: ['', Validators.required],
-      Cantidad: [0, [Validators.required, Validators.pattern('^[0-9]+$'), Validators.min(1)]],
-      Fecha: ['', Validators.required],
-      ID_Categoria: [0, Validators.required],
+
+  }
+
+  abrirModalEditarGasto(gasto: Gasto): void {
+    // Abre el modal
+    const dialogRef = this.dialog.open(EditarFormComponent, {
+      width: '400px', // Establece el ancho del modal
+      data: { Gasto: gasto } // Pasa cualquier dato necesario al modal
+    });
+
+    // Escucha el evento de cierre del modal (puede ser útil si necesitas hacer algo después de cerrar el modal)
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 
@@ -94,7 +98,6 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   obtenerCategorias(): void {
     this.categoriaService.obtenerCategorias().subscribe((response) => {
       this.categorias = response.data;
-      initFlowbite();
     });
   }
 
@@ -142,35 +145,7 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     this.gastoService.borrarGasto(idGasto).subscribe(() => {
     });
   }
-
-  pasarInfoGasto(idGasto: number): void {  
-    this.gastoService.obtenerGastoPorId(idGasto).subscribe((response) => {
-      this.editarForm.patchValue({
-        ID_Gasto: response.data.ID_Gasto,
-        Descripcion: response.data.Descripcion,
-        Cantidad: response.data.Cantidad,
-        Fecha: response.data.Fecha,
-        ID_Categoria: response.data.ID_Categoria
-      });
-    },
-    error => {
-      console.error('Error al obtener el gasto', error);
-    });
-  }
   
-  
-
-  editarGasto(): void {
-    const nuevoGasto = this.editarForm.value;
-    this.gastoService.editarGasto(nuevoGasto).subscribe(response => {
-      this.editarForm.reset();
-      this.showSuccess();
-      setTimeout(() => window.location.reload(), 2000);
-    }, error => {
-      this.showError();
-      console.error('Error al editar el gasto', error);
-    });
-  }
 
   showSuccess() {
     this.toastr.success('Gasto editado con éxito!', 'Operación exitosa');
