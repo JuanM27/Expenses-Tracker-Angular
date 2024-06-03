@@ -8,6 +8,7 @@
   font-family: "lexend", sans-serif;
   color: #4d4d4d;
   font-weight: 600;
+  line-height: 1.2;
 }
 
 .texto {
@@ -404,19 +405,19 @@
 
   .objetivo3_icono {
     width: 20%;
-    height: 20%;
+    height: 25%;
     margin-bottom: 10px;
   }
 
   .objetivo2_icono {
     width: 20%;
-    height: 20%;
+    height: 25%;
     margin-bottom: 10px;
   }
 
   .objetivo1_icono {
     width: 20%;
-    height: 20%;
+    height: 25%;
     margin-bottom: 10px;
   }
 
