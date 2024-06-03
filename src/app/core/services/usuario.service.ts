@@ -19,6 +19,7 @@ export class UsuarioService {
   private apiUrl2 = environment.urlNode+'usuario';
   private apiUrl3 = environment.urlNode+'imagenPerfil';
   private apiUrl4 = environment.urlNode+'actualizarPerfil';
+  private apiUrl5 = environment.urlNode+'usuarios';
 
   
   constructor(private http: HttpClient,
@@ -94,6 +95,14 @@ export class UsuarioService {
 
     console.log("La ruta es, "+ this.apiUrl4)
     return this.http.put(this.apiUrl4, usuario, { headers });
+  }
+
+  obtenerUsuarios(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `${localStorage.getItem("token")}`
+    });
+
+    return this.http.get<any>(this.apiUrl5, { headers });
   }
 
 }

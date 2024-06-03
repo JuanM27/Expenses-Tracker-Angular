@@ -1,31 +1,31 @@
 <div class="landing">
   <div class="barraNavegacion">
-    <div class="barraNavegacion_logo">
+    <div class="barraNavegacion__logo">
       <img src="../../../assets/images/logoNegro.png" alt="Logo" />
     </div>
-    <div class="barraNavegacion_nombreAplicacion titulo" id="barraNavegacion_enlaces">
+    <div class="barraNavegacion__nombreAplicacion titulo">
       <h4>Expenses Tracker</h4>
     </div>
-    <nav class="barraNavegacion_enlaces texto">
+    <nav class="barraNavegacion__enlaces texto" id="barraNavegacion__enlaces">
       <ul>
         <li><a href="#tecnologias">Tecnologías</a></li>
         <li><a href="#viaje">Objetivo</a></li>
         <li><a href="#footer">Contacto</a></li>
       </ul>
     </nav>
-    <a href="javascript:void(0);" class="barraNavegacion_iconoHamburguesa" (click)="menuHamburguesa()">
+    <a href="javascript:void(0);" class="barraNavegacion__iconoHamburguesa" (click)="menuHamburguesa()">
       <i class="fa fa-bars"></i>
     </a>
-    <div class="barraNavegacion_botonRegistro texto">
+    <div class="barraNavegacion__botonRegistro texto">
       <button routerLink="/register">Regístrate</button>
     </div>
-  </div>
+  </div>  
   <div class="introduccion">
-    <div class="introduccion_texto">
-      <div class="introduccion_titulo">
+    <div class="introduccion__texto">
+      <div class="introduccion__titulo">
         <h1 class="titulo">Controla tus Finanzas con Expenses Tracker</h1>
       </div>
-      <div class="introduccion_descripcion texto">
+      <div class="introduccion__descripcion texto">
         <h4>
           Gastar dinero es fácil, pero mantener un registro claro y preciso de
           tus gastos puede ser complicado. Con Expenses Tracker, simplificamos
@@ -33,105 +33,104 @@
           tus gastos de una manera fácil y efectiva.
         </h4>
       </div>
-      <div class="introduccion_botonRegistro texto">
+      <div class="introduccion__botonRegistro texto">
         <button routerLink="/register">Regístrate</button>
       </div>
     </div>
-    <div class="introduccion_imagen">
+    <div class="introduccion__imagen">
       <img src="../../../assets/images/intro-image.svg" alt="" />
     </div>
   </div>
   <div class="tecnologias" id="tecnologias">
-    <div class="tecnologias_titulo">
+    <div class="tecnologias__titulo">
       <h2 class="titulo">Tecnologías</h2>
     </div>
-    <div class="tecnologias_subtitulo">
+    <div class="tecnologias__subtitulo">
       <h4 class="texto">
         Las tecnologías que hemos utilizado en esta aplicación han sido:
       </h4>
     </div>
     <div class="tecnologiasSlider">
-      <div class="tecnologiasSlider_slider-track">
-        <div class="tecnologiasSlider_slide">
+      <div class="tecnologiasSlider__sliderTrack">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/angular-logo.png" alt="" />
         </div>
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/npm-logo.png" alt="" />
         </div>
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/node-logo.svg" alt="" />
         </div>
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/js-logo.png" alt="" />
         </div>
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/LogoTailwind-logo.svg" alt="" />
         </div>
-
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/angular-logo.png" alt="" />
         </div>
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/npm-logo.png" alt="" />
         </div>
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/node-logo.svg" alt="" />
         </div>
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/js-logo.png" alt="" />
         </div>
-        <div class="tecnologiasSlider_slide">
+        <div class="tecnologiasSlider__slide">
           <img src="../../../assets/images/LogoTailwind-logo.svg" alt="" />
         </div>
       </div>
     </div>
   </div>
   <div class="viaje" id="viaje">
-    <div class="viaje_titulo">
+    <div class="viaje__titulo">
       <h1 class="titulo">
         Comienza tu Viaje hacia una Mejor Gestión Financiera
       </h1>
     </div>
-    <div class="viaje_subtitulo">
+    <div class="viaje__subtitulo">
       <h4 class="texto">¿A quién va dirigido Expenses Tracker?</h4>
     </div>
-    <div class="viaje_objetivos">
-      <div class="objetivo1">
-        <div class="objetivo1_icono">
+    <div class="viaje__objetivos">
+      <div class="viaje__objetivo">
+        <div class="viaje__icono">
           <img src="../../../assets/images/icono-personas.png" alt="" />
         </div>
-        <div class="objetivo1_titulo">
+        <div class="viaje__titulo">
           <h4 class="titulo">Individuos con presupuestos ajustados</h4>
         </div>
-        <div class="objetivo1_texto">
+        <div class="viaje__texto">
           Para aquellos que desean administrar cuidadosamente sus finanzas
           personales y mantenerse dentro de un presupuesto específico, Expenses
           Tracker ofrece herramientas para realizar un seguimiento detallado de
           los gastos y ayudar a identificar áreas de gasto excesivo.
         </div>
       </div>
-      <div class="objetivo2">
-        <div class="objetivo2_icono">
+      <div class="viaje__objetivo">
+        <div class="viaje__icono">
           <img src="../../../assets/images/icono-empresa.png" alt="" />
         </div>
-        <div class="objetivo2_titulo">
+        <div class="viaje__titulo">
           <h4 class="titulo">Emprendedores y autónomos</h4>
         </div>
-        <div class="objetivo2_texto">
+        <div class="viaje__texto">
           Para aquellos que trabajan por cuenta propia o tienen ingresos
           variables, Expenses Tracker brinda herramientas para rastrear ingresos
           y gastos comerciales, facilitando la gestión financiera de sus
           empresas.
         </div>
       </div>
-      <div class="objetivo3">
-        <div class="objetivo3_icono">
+      <div class="viaje__objetivo">
+        <div class="viaje__icono">
           <img src="../../../assets/images/icono-hogar.png" alt="" />
         </div>
-        <div class="objetivo3_titulo">
+        <div class="viaje__titulo">
           <h4 class="titulo">Familias y hogares</h4>
         </div>
-        <div class="objetivo3_texto">
+        <div class="viaje__texto">
           Para hogares con múltiples fuentes de ingresos y gastos compartidos,
           Expenses Tracker ofrece funciones para colaborar en la gestión
           financiera familiar, permitiendo una visión clara y compartida de las
@@ -141,34 +140,34 @@
     </div>
   </div>
   <div class="descubre">
-    <div class="descubre_titulo"><h1 class="titulo">¡Descubre más!</h1></div>
-    <div class="descubre_boton">
+    <div class="descubre__titulo"><h1 class="titulo">¡Descubre más!</h1></div>
+    <div class="descubre__boton">
       <button routerLink="/register">Registrate</button>
     </div>
   </div>
   <div class="footer" id="footer">
-    <div class="footer_redes-copyright">
-      <div class="footer_redes_copyright">
+    <div class="footer__redesCopyright">
+      <div class="footer__redesCopyright">
         <h4 class="texto">Copyright © 2024 Expenses Tracker.</h4>
         <h4 class="texto">All rights reserved</h4>
       </div>
-      <div class="footer_redes">
-        <div class="footer_redes_instagram">
+      <div class="footer__redes">
+        <div class="footer__redesInstagram">
           <img src="../../../assets/images/instagram-icono.png" alt="" />
         </div>
-        <div class="footer_redes_twitter">
+        <div class="footer__redesTwitter">
           <img src="../../../assets/images/twitter-icono.png" alt="" />
         </div>
-        <div class="footer_redes_facebook">
+        <div class="footer__redesFacebook">
           <img src="../../../assets/images/icono-facebook.png" alt="" />
         </div>
       </div>
     </div>
-    <div class="footer_compania">
-      <div class="footer_compania_titulo">
+    <div class="footer__compania">
+      <div class="footer__companiaTitulo">
         <h4>Compañía</h4>
       </div>
-      <div class="footer_texto">
+      <div class="footer__texto">
         <h4 class="texto">Sobre nosotros</h4>
         <h4 class="texto">Blog</h4>
         <h4 class="texto">Contacta con nosotros</h4>
@@ -176,11 +175,11 @@
         <h4 class="texto">Testimonios</h4>
       </div>
     </div>
-    <div class="footer_ayuda">
-      <div class="footer_ayuda_titulo">
+    <div class="footer__ayuda">
+      <div class="footer__ayudaTitulo">
         <h4>Ayuda</h4>
       </div>
-      <div class="footer_ayuda_texto">
+      <div class="footer__texto">
         <h4 class="texto">Centro de ayuda</h4>
         <h4 class="texto">Términos del servicio</h4>
         <h4 class="texto">Legal</h4>
