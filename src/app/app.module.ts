@@ -23,6 +23,7 @@ import { ImagenPerfilComponent } from './pages/imagen-perfil/imagen-perfil.compo
 import { EditarFormComponent } from './pages/editar-form/editar-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AnadirFormComponent } from './pages/anadir-form/anadir-form.component';
+import { ModalBorrarComponent } from './pages/modal-borrar/modal-borrar.component';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { AnadirFormComponent } from './pages/anadir-form/anadir-form.component';
     GastosComponent,
     SidebarComponent,    
     GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, PaginaAdministradorComponent,
-    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent, EditarFormComponent, AnadirFormComponent
+    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent, EditarFormComponent, AnadirFormComponent, ModalBorrarComponent
   ],
   imports: [
     BrowserModule,

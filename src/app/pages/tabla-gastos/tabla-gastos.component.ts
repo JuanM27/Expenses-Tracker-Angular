@@ -10,6 +10,7 @@ import { initFlowbite } from 'flowbite';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { EditarFormComponent } from '../editar-form/editar-form.component';
+import { ModalBorrarComponent } from '../modal-borrar/modal-borrar.component';
 
 @Component({
   selector: 'app-tabla-gastos',
@@ -141,11 +142,25 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     return `${dia}/${mes}/${año}`;
   }
 
-  borrarGasto(idGasto: number): void {
+ /*  borrarGasto(idGasto: number): void {
     this.gastoService.borrarGasto(idGasto).subscribe(() => {
     });
-  }
+  } */
   
+  borrarGasto(idGasto: number): void {
+    const dialogRef = this.dialog.open(ModalBorrarComponent, {
+      width: '300px',
+      data: { idGasto }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.gastoService.borrarGasto(idGasto).subscribe(() => {
+        });
+        console.log(`Gasto con ID ${idGasto} eliminado`);
+      }
+    });
+  }
 
   showSuccess() {
     this.toastr.success('Gasto editado con éxito!', 'Operación exitosa');

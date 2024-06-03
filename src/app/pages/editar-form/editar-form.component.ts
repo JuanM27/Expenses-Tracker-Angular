@@ -49,10 +49,10 @@ export class EditarFormComponent {
     const nuevoGasto = this.editarForm.value;
     this.gastoService.editarGasto(nuevoGasto).subscribe(response => {
       this.editarForm.reset();
-      this.showSuccess();
+      this.toastr.success('Gasto editado con éxito!', 'Operación exitosa');
       this.dialogRef.close();
     }, error => {
-      this.showError();
+      this.toastr.error('Error al editar el gasto!', 'Operación fallida');
       console.error('Error al editar el gasto', error);
     });
   }
@@ -62,14 +62,4 @@ export class EditarFormComponent {
       this.categorias = response.data;
     });
   }
-
-  
-  showSuccess() {
-    this.toastr.success('Gasto editado con éxito!', 'Operación exitosa');
-  }
-
-  showError() {
-    this.toastr.error('Error al editar el gasto!', 'Operación fallida');
-  }
-
 }
