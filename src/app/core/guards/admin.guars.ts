@@ -9,12 +9,13 @@ export class AdminGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): boolean {
-    if (this.authService.isAdmin()) {
-        console.log("Es administrador en auth guard");
+  async canActivate(): Promise<boolean> {
+    const isAdmin = await this.authService.isAdmin();
+    if (isAdmin) {
+      console.log("Usuario es administrador");
       return true;
     } else {
-        console.log("No es administrador en auth guard");
+      console.log("Usuario no es administrador");
       this.router.navigate(['/login']);
       return false;
     }

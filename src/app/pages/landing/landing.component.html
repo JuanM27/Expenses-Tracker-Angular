@@ -3,7 +3,7 @@
     <div class="barraNavegacion_logo">
       <img src="../../../assets/images/logoNegro.png" alt="Logo" />
     </div>
-    <div class="barraNavegacion_nombreAplicacion titulo">
+    <div class="barraNavegacion_nombreAplicacion titulo" id="barraNavegacion_enlaces">
       <h4>Expenses Tracker</h4>
     </div>
     <nav class="barraNavegacion_enlaces texto">
@@ -13,6 +13,9 @@
         <li><a href="#footer">Contacto</a></li>
       </ul>
     </nav>
+    <a href="javascript:void(0);" class="barraNavegacion_iconoHamburguesa" (click)="menuHamburguesa()">
+      <i class="fa fa-bars"></i>
+    </a>
     <div class="barraNavegacion_botonRegistro texto">
       <button routerLink="/register">Regístrate</button>
     </div>

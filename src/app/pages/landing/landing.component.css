@@ -66,6 +66,10 @@
   margin-right: 50px;
 }
 
+.barraNavegacion_iconoHamburguesa {
+  display: none;
+}
+
 .introduccion {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -125,7 +129,7 @@
   height: 100%;
   margin: auto;
   overflow: hidden;
-  margin-left: 150px;
+  margin-left: 250px;
 }
 
 .tecnologiasSlider .tecnologiasSlider_slider-track {
@@ -363,4 +367,201 @@
 
 .footer_ayuda h4 {
   margin-top: 10px;
+}
+
+
+/*MEDIA QUERYS PARA PANTALLAS MAS GRANDES*/
+
+@media (min-width: 1500px) {
+  .viaje {
+    background-color: #f5f7fa;
+    height: 55vh;
+  }
+
+  .viaje_objetivos {
+
+    width: 80vw;
+
+  }
+
+  .objetivo3_texto {
+    width:70%;
+    margin-top: 20px;
+   
+  }
+
+  .objetivo2_texto {
+    width:70%;
+    margin-top: 20px;
+   
+  }
+
+  .objetivo1_texto {
+    width:70%;
+    margin-top: 20px;
+   
+  }
+
+  .objetivo3_icono {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 10px;
+  }
+
+  .objetivo2_icono {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 10px;
+  }
+
+  .objetivo1_icono {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 10px;
+  }
+
+  .descubre {
+    height: 20vh;
+  }
+
+
+  .footer {
+   
+    height: 40vh;
+ 
+  }
+
+}
+
+/*MEDIA QUIERIES PARA PANTALAS PEQUEÑAS MOVILES */
+
+@media (max-width: 768px) {
+
+  .barraNavegacion{
+    width: 100vw;
+    height: 10vh;
+  }
+
+  .barraNavegacion_logo img{
+    width: 40px;
+    margin-left: 40px;
+    margin-top: -60px;
+  }
+  .barraNavegacion_nombreAplicacion h4{
+    margin-left: 20px;
+    margin-top: -45px;
+  }
+
+  .barraNavegacion_iconoHamburguesa{
+    display: block;
+    margin-right: 20px;
+  }
+
+  .barraNavegacion_botonRegistro {
+    display: none;
+  }
+
+  .barraNavegacion_enlaces {
+    display: none;
+  }
+  
+  .barraNavegacion_iconoHamburguesa {
+    width: 50px;
+    height: 150px;
+    margin-left: auto; /* Esto colocará el icono al final de la barra de navegación */
+    margin-top: 20px;
+  }
+
+  .barraNavegacion_iconoHamburguesa i{
+    margin-top: 10px;
+    font-size: 2rem;
+  }
+
+  .introduccion {
+    width: 100vw;
+  }
+
+  .introduccion_texto h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .tecnologias {
+   
+    height: 100%;
+    width: 100vw;
+  }
+
+  .tecnologiasSlider {
+    width: 40vw;
+    height: 100%;
+    margin-left: 140px;
+  }
+
+  .viaje_objetivos {
+    grid-template-columns: 1fr; /* Solo una columna */
+    grid-template-rows: auto; /* Filas automáticas según el contenido */
+    gap: 20px; /* Espacio entre las celdas */
+    padding-bottom: 10px; /* Ajustar el espacio inferior */
+    }
+
+  /* Ajustes para los íconos y textos */
+  .objetivo1_icono,
+  .objetivo2_icono,
+  .objetivo3_icono {
+    width: 30%; /* Ancho del ícono reducido */
+    height: auto; /* Altura automática */
+
+  }
+
+  .viaje_subtitulo {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #4d4d4d;
+    padding-top: 10px;
+    width: 50%;
+    margin-left: 100px;
+  }
+
+  .viaje{
+    height: 140vh;
+    width: 100vw;
+  }
+
+  .descubre {
+   width: 100vw;
+   height: 25vh;
+  }
+  
+  .descubre_boton {
+    width: 25%;
+  }
+  
+  .footer {
+    background-color: #263228;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    grid-template-rows: 1fr 1fr; /* Dos filas de igual tamaño */
+    color: white;
+  }
+  
+  .footer_redes-copyright,
+  .footer_redes,
+  .footer_compania,
+  .footer_ayuda {
+    margin: auto;
+    text-align: center;
+  }
+  
+  .footer_redes_instagram,
+  .footer_redes_facebook,
+  .footer_redes_twitter {
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+
 }

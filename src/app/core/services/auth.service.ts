@@ -46,9 +46,11 @@ export class AuthService {
     const usuarioId = Number(sessionStorage.getItem("usuario"));
     try {
       const response = await this.usuarioService.buscarUsuario(usuarioId).toPromise();
+      console.log("Response", response.data.Administrador);
       if (response.data.Administrador === true) {
         return true;
       }else{
+        console.log("No es administrador");
         return false;
       }
     } catch (error) {
