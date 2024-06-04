@@ -25,6 +25,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AnadirFormComponent } from './pages/anadir-form/anadir-form.component';
 import { ModalBorrarComponent } from './pages/modal-borrar/modal-borrar.component';
 import { EditarUsuarioFormComponent } from './pages/editar-usuario-form/editar-usuario-form.component';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { AnadirCategoriaFormComponent } from './pages/anadir-categoria-form/anadir-categoria-form.component';
+import { EditarCategoriaFormComponent } from './pages/editar-categoria-form/editar-categoria-form.component';
 
 
 @NgModule({
@@ -37,7 +40,7 @@ import { EditarUsuarioFormComponent } from './pages/editar-usuario-form/editar-u
     GastosComponent,
     SidebarComponent,    
     GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, PaginaAdministradorComponent,
-    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent, EditarFormComponent, AnadirFormComponent, ModalBorrarComponent, EditarUsuarioFormComponent
+    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent, EditarFormComponent, AnadirFormComponent, ModalBorrarComponent, EditarUsuarioFormComponent, CategoriasComponent, AnadirCategoriaFormComponent, EditarCategoriaFormComponent
   ],
   imports: [
     BrowserModule,

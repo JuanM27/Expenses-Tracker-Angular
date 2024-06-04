@@ -64,23 +64,19 @@
                   </div>
                   <p class="text-sm text-blueGray-500 mt-4">
                     <span
-                      class="text-{{
-                        porcentajeGastoExtra >= 0 ? 'red' : 'emerald'
-                      }}-500 mr-2"
-                      ><i
-                        class="fas fa-arrow-{{
-                          porcentajeGastoExtra >= 0 ? 'up' : 'down'
-                        }}"
-                      ></i>
-                      {{
-                        porcentajeGastoExtra >= 0
-                          ? porcentajeGastoExtra
-                          : -porcentajeGastoExtra
-                      }}%</span
-                    ><span class="whitespace-nowrap"
-                      >{{ porcentajeGastoExtra >= 0 ? "Más" : "Menos" }} que el
-                      mes anterior</span
-                    >
+                    class="text-{{ porcentajeGastoExtra >= 0 ? 'red' : 'emerald' }}-500 mr-2"
+                  >
+                    <i class="fas fa-arrow-{{ porcentajeGastoExtra >= 0 ? 'up' : 'down' }}"></i>
+                    {{
+                      (porcentajeGastoExtra >= 0
+                        ? porcentajeGastoExtra
+                        : -porcentajeGastoExtra) | number: '1.2-2'
+                    }}%
+                  </span>
+                  <span class="whitespace-nowrap">
+                    {{ porcentajeGastoExtra >= 0 ? "Más" : "Menos" }} que el mes anterior
+                  </span>
+                  
                   </p>
                 </div>
               </div>
@@ -111,20 +107,14 @@
                   </div>
                   <p class="text-sm text-blueGray-500 mt-4">
                     <span
-                      class="text-{{
-                        porcentajeObjetivo > 100 ? 'red' : 'emerald'
-                      }}-500 mr-2"
-                      ><i
-                        class="fas fa-arrow-{{
-                          porcentajeObjetivo > 100 ? 'up' : 'down'
-                        }}"
-                      ></i>
-                      {{ porcentajeObjetivo }}%</span
-                    ><span class="whitespace-nowrap">{{
-                      porcentajeObjetivo > 100
-                        ? "Te has pasado de tu obejetivo"
-                        : "Todavía no te has pasado"
-                    }}</span>
+                    class="text-{{ porcentajeObjetivo > 100 ? 'red' : 'emerald' }}-500 mr-2"
+                  >
+                    <i class="fas fa-arrow-{{ porcentajeObjetivo > 100 ? 'up' : 'down' }}"></i>
+                    {{ porcentajeObjetivo | number: '1.2-2' }}%
+                  </span>
+                  <span class="whitespace-nowrap">
+                    {{ porcentajeObjetivo > 100 ? "Te has pasado de tu objetivo" : "Todavía no te has pasado" }}
+                  </span>                  
                   </p>
                 </div>
               </div>
@@ -172,7 +162,7 @@
                         PORCENTAJE
                       </h5>
                       <span class="font-bold text-xl"
-                        >{{ porcentajeObjetivo }}%</span
+                        >{{ porcentajeObjetivo | number: '1.2-2' }}%</span
                       >
                     </div>
                     <div class="relative w-auto pl-4 flex-initial">
@@ -185,20 +175,19 @@
                   </div>
                   <p class="text-sm text-blueGray-500 mt-4">
                     <span
-                      class="text-{{
-                        porcentajeObjetivo > 100 ? 'red' : 'emerald'
-                      }}-500 mr-2"
-                      ><i
-                        class="fas fa-arrow-{{
-                          porcentajeObjetivo > 100 ? 'up' : 'down'
-                        }}"
-                      ></i>
-                      {{ porcentajeObjetivo }}%</span
-                    ><span class="whitespace-nowrap">{{
-                      porcentajeObjetivo > 100
-                        ? "Te has pasado de tu obejetivo"
-                        : "Todavía no te has pasado"
-                    }}</span>
+                      class="text-{{ porcentajeObjetivo > 100 ? 'red' : 'emerald' }}-500 mr-2"
+                    >
+                      <i class="fas fa-arrow-{{ porcentajeObjetivo > 100 ? 'up' : 'down' }}"></i>
+                      {{ porcentajeObjetivo | number: '1.2-2' }}%
+                    </span>
+                    <span class="whitespace-nowrap">
+                      {{
+                        porcentajeObjetivo > 100
+                          ? "Te has pasado de tu objetivo"
+                          : "Todavía no te has pasado"
+                      }}
+                    </span>
+
                   </p>
                 </div>
               </div>
