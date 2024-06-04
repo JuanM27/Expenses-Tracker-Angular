@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from './interfaces/usuario';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Router } from '@angular/router';
 
@@ -20,6 +20,13 @@ export class UsuarioService {
   private apiUrl3 = environment.urlNode+'imagenPerfil';
   private apiUrl4 = environment.urlNode+'actualizarPerfil';
   private apiUrl5 = environment.urlNode+'usuarios';
+  private apiUrl6 = environment.urlNode+'editarUsuario';
+
+  private usuarioEditadoSource = new Subject<void>();
+  private usuarioBorradoSource = new Subject<void>();
+
+  usuarioEditado$ = this.usuarioEditadoSource.asObservable();
+  usuarioBorrado$ = this.usuarioBorradoSource.asObservable();
 
   
   constructor(private http: HttpClient,
@@ -103,6 +110,30 @@ export class UsuarioService {
     });
 
     return this.http.get<any>(this.apiUrl5, { headers });
+  }
+
+  editarUsuario(usuario:Usuario): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `${localStorage.getItem("token")}`
+    });
+
+    return this.http.put<any>(this.apiUrl6+"/"+usuario.ID_Usuario, usuario, { headers }).pipe(
+      tap(() => {
+        this.usuarioEditadoSource.next();
+      })
+    );
+  }
+
+  borrarUsuario(idUsuario: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `${localStorage.getItem("token")}`
+    });
+
+    return this.http.delete(`${this.apiUrl2}/${idUsuario}`, { headers }).pipe(
+      tap(() => {
+        this.usuarioBorradoSource.next();
+      })
+    );
   }
 
 }

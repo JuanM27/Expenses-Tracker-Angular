@@ -26,12 +26,24 @@
         >
           Funciones 1
         </h6>
+        <!-- Si usuario.Administrador es false o undefined, muestra "Añadir gastos" -->
         <a
-          routerLink="/gastos"
-          class="text-l uppercase py-3 font-medium block text-blueGray-800 hover:text-blueGray-500"
+        routerLink="/gastos"
+        class="text-l uppercase py-3 font-medium block text-blueGray-800 hover:text-blueGray-500"
+        *ngIf="!usuario?.Administrador"
         >
-          <i class="fas fa-newspaper mr-2 text-l text-blueGray-400"></i>
-          Añadir gastos
+        <i class="fas fa-newspaper mr-2 text-l text-blueGray-400"></i>
+        Añadir gastos
+        </a>
+        
+        <!-- Si usuario.Administrador es true, muestra "Administrar usuario" -->
+        <a
+        routerLink="/administrador"
+        class="text-l uppercase py-3 font-medium block text-blueGray-800 hover:text-blueGray-500"
+        *ngIf="usuario?.Administrador"
+        >
+        <i class="fas fa-user-cog mr-2 text-l text-blueGray-400"></i>
+        Administrar usuario
         </a>
 
         <hr class="my-4 md:min-w-full" />

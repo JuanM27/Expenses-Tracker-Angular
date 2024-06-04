@@ -5,16 +5,18 @@ import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Usuario } from 'src/app/core/services/interfaces/usuario';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-editar-usuario-form',
   templateUrl: './editar-usuario-form.component.html',
   styleUrls: ['./editar-usuario-form.component.css']
 })
+
 export class EditarUsuarioFormComponent {
   editarUsuarioForm: FormGroup;
   usuario: Usuario;
-
+  
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditarFormComponent>,
@@ -33,10 +35,41 @@ export class EditarUsuarioFormComponent {
     });
   }
 
+
   editarUsuario(){
-    console.log("Editar usuario");
+    const usuario = this.editarUsuarioForm.value;
+    this.usuarioService.editarUsuario(usuario).subscribe(
+      (response: any) => {
+        console.log(response);
+        if(response.mensaje==="Usuario actualizado correctamente"){
+          this.toastr.success('Usuario actualizado correctamente', 'Usuario actualizado');
+          this.dialogRef.close();
+        }else{
+          this.toastr.error('Error al actualizar el usuario', 'Error');
+        }
+      },
+      (error) => {
+        this.toastr.error('Error al actualizar el usuario', 'Error');
+      }
+    );
   }
 
+  borrarUsuario(){
+    const idUsuario = this.editarUsuarioForm.value.ID_Usuario;
+    this.usuarioService.borrarUsuario(idUsuario).subscribe(
+      (response: any) => {
+        if(response.mensaje==="Usuario eliminado correctamente"){
+          this.toastr.success('Usuario eliminado correctamente', 'Usuario eliminado');
+          this.dialogRef.close();
+        }else{
+          this.toastr.error('Error al eliminar el usuario', 'Error');
+        }
+      },
+      (error) => {
+        this.toastr.error('Error al eliminar el usuario', 'Error');
+      }
+    );
+  }
   
   onNoClick(): void {
     this.dialogRef.close();
