@@ -15,8 +15,10 @@ import { ToastrService } from 'ngx-toastr';
 export class PaginaAdministradorComponent {
 
   usuarios:Usuario[] = [];
+  usuariosFiltrados:Usuario[] = [];
   usuarioEditadoSubscription: Subscription;
   usuarioBorradoSubscription: Subscription;
+  palabraBusqueda:string = "";
 
 
   constructor(
@@ -69,6 +71,7 @@ export class PaginaAdministradorComponent {
   obeterUsuarios(){
     this.usuarioService.obtenerUsuarios().subscribe(response => {
       this.usuarios = response.usuarios;
+      this.usuariosFiltrados = this.usuarios;
     });
   }
 
@@ -85,7 +88,15 @@ export class PaginaAdministradorComponent {
     );
   }
 
-  
-
+  filterUsuarios(): void {
+    if (this.palabraBusqueda !== "") {
+      this.usuariosFiltrados = this.usuarios.filter(usuario =>
+        usuario.Nombre.toLowerCase().includes(this.palabraBusqueda.toLowerCase()) ||
+        usuario.ID_Usuario.toString().includes(this.palabraBusqueda) || usuario.Correo.toLowerCase().includes(this.palabraBusqueda.toLowerCase())||usuario.Objetivo_Gasto.toString().includes(this.palabraBusqueda)
+      );
+    } else {
+      this.usuariosFiltrados = this.usuarios;
+    }
+  }
 
 }
