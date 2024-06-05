@@ -129,6 +129,20 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
       this.filteredGastos = this.gastos;
     }
   }
+
+  filtrarGastosPorFecha(fechaInicio: string, fechaFin: string): void {
+    if (fechaInicio && fechaFin) {
+      const fechaInicioObj = new Date(fechaInicio);
+      const fechaFinObj = new Date(fechaFin);
+      this.filteredGastos = this.gastos.filter(gasto => {
+        const fechaGasto = new Date(gasto.Fecha);
+        return fechaGasto >= fechaInicioObj && fechaGasto <= fechaFinObj;
+      });
+    } else {
+      this.filteredGastos = this.gastos;
+    }
+  }
+  
   
   obtenerCategoriaPorId(idCategoria: number): Categoria {
     return this.categorias.find(categoria => categoria.ID_Categoria === idCategoria);

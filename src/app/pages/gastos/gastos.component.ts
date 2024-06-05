@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { GastoService } from 'src/app/core/services/gasto.service';
@@ -7,6 +7,8 @@ import { initFlowbite } from 'flowbite';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { AnadirFormComponent } from '../anadir-form/anadir-form.component';
+import { FiltrarGastoFechaFormComponent } from '../filtrar-gasto-fecha-form/filtrar-gasto-fecha-form.component';
+import { TablaGastosComponent } from '../tabla-gastos/tabla-gastos.component';
 
 @Component({
   selector: 'app-gastos',
@@ -14,6 +16,8 @@ import { AnadirFormComponent } from '../anadir-form/anadir-form.component';
   styleUrls: ['./gastos.component.css']
 })
 export class GastosComponent {
+
+  @ViewChild(TablaGastosComponent) tablaGastosComponent: TablaGastosComponent;
 
   ngAfterViewInit(){
     initFlowbite();
@@ -32,7 +36,7 @@ export class GastosComponent {
   ) {
   }
 
-  abrirModalEditarGasto(): void {
+  abrirModalAnadirGasto(): void {
     // Abre el modal
     const dialogRef = this.dialog.open(AnadirFormComponent, {
       width: '400px', // Establece el ancho del modal
@@ -40,6 +44,20 @@ export class GastosComponent {
 
     // Escucha el evento de cierre del modal (puede ser útil si necesitas hacer algo después de cerrar el modal)
     dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  abrirModalFiltrarGasto(): void {
+    const dialogRef = this.dialog.open(FiltrarGastoFechaFormComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const { Fecha1, Fecha2 } = result;
+        // Pasa los valores de Fecha1 y Fecha2 al componente TablaGastosComponent
+        this.tablaGastosComponent.filtrarGastosPorFecha(Fecha1, Fecha2);
+      }
     });
   }
 
