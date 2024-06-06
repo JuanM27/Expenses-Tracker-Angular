@@ -29,6 +29,7 @@ import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { AnadirCategoriaFormComponent } from './pages/anadir-categoria-form/anadir-categoria-form.component';
 import { EditarCategoriaFormComponent } from './pages/editar-categoria-form/editar-categoria-form.component';
 import { FiltrarGastoFechaFormComponent } from './pages/filtrar-gasto-fecha-form/filtrar-gasto-fecha-form.component';
+import { ExportarGastoPdfFormComponent } from './pages/exportar-gasto-pdf-form/exportar-gasto-pdf-form.component';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { FiltrarGastoFechaFormComponent } from './pages/filtrar-gasto-fecha-form
     GastosComponent,
     SidebarComponent,    
     GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, PaginaAdministradorComponent,
-    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent, EditarFormComponent, AnadirFormComponent, ModalBorrarComponent, EditarUsuarioFormComponent, CategoriasComponent, AnadirCategoriaFormComponent, EditarCategoriaFormComponent, FiltrarGastoFechaFormComponent
+    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent, EditarFormComponent, AnadirFormComponent, ModalBorrarComponent, EditarUsuarioFormComponent, CategoriasComponent, AnadirCategoriaFormComponent, EditarCategoriaFormComponent, FiltrarGastoFechaFormComponent, ExportarGastoPdfFormComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AnadirFormComponent } from '../anadir-form/anadir-form.component';
 import { FiltrarGastoFechaFormComponent } from '../filtrar-gasto-fecha-form/filtrar-gasto-fecha-form.component';
 import { TablaGastosComponent } from '../tabla-gastos/tabla-gastos.component';
+import { ExportarGastoPdfFormComponent } from '../exportar-gasto-pdf-form/exportar-gasto-pdf-form.component';
 
 @Component({
   selector: 'app-gastos',
@@ -58,6 +59,15 @@ export class GastosComponent {
         // Pasa los valores de Fecha1 y Fecha2 al componente TablaGastosComponent
         this.tablaGastosComponent.filtrarGastosPorFecha(Fecha1, Fecha2);
       }
+    });
+  }
+
+  abrirModalExportarGastps(): void {
+    const dialogRef = this.dialog.open(ExportarGastoPdfFormComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 

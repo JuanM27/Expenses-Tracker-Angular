@@ -16,6 +16,7 @@ export class GastoService {
   private apiUrl1 = environment.urlNode + 'gastos-categoria'; // Endpoint corregido
   private apiUrl2 = environment.urlNode + 'nuevoGasto';
   private apiUrl3 = environment.urlNode + 'gasto';
+  private apiUrl4 = environment.urlNode + 'exportarpdf';
   // Subject para emitir el nuevo gasto agregado
   private gastoAgregadoSubject: Subject<any> = new Subject<any>();
   private gastoBorradoSource = new Subject<void>();
@@ -89,5 +90,13 @@ export class GastoService {
         this.gastoEditadoSource.next();
       })
     );
+  }
+
+  exportarGastoPdfFormComponent(datos:any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `${this.token}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl4}/${this.idUsuario}`, datos, { headers });
   }
 }
