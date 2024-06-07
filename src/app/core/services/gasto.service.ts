@@ -92,11 +92,14 @@ export class GastoService {
     );
   }
 
-  exportarGastoPdfFormComponent(datos:any): Observable<any> {
+  exportarGastoPdfFormComponent(datos: any): Observable<Blob> {
     const headers = new HttpHeaders({
       'Authorization': `${this.token}`
     });
 
-    return this.http.post<any>(`${this.apiUrl4}/${this.idUsuario}`, datos, { headers });
+    return this.http.post(`${this.apiUrl4}/${this.idUsuario}`, datos, {
+      headers: headers,
+      responseType: 'blob'
+    });
   }
 }
