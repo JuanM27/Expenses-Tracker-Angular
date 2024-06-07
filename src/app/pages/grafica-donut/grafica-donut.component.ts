@@ -22,22 +22,16 @@ export class GraficaDonutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Obtener las categorías desde el servicio
     this.categoriaService.obtenerCategorias().subscribe((response) => { 
       this.categorias = response.data;
       console.log('Categorías:', this.categorias);
       
-      // Obtener los gastos del usuario
       this.gastoService.gastosUsuario().subscribe((responseGastos) => {
         this.gastos = responseGastos.data;
         
-        // Obtener los nombres de las categorías de los gastos
         const labels = this.obtenerNombresCategorias();
-        
-        // Obtener los datos de los gastos por categoría
         const data = this.obtenerDatosGastosPorCategoria();
         
-        // Crear la gráfica de donut con los datos obtenidos
         this.chart = new Chart("chart", {
           type: 'doughnut' as ChartType,
           data: {
@@ -52,22 +46,23 @@ export class GraficaDonutComponent implements OnInit {
               ],
               hoverOffset: 4
             }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false
           }
         });
       });
     });
   }
 
-  // Método para obtener los nombres de las categorías de los gastos
   obtenerNombresCategorias(): string[] {
     return this.categorias.map(categoria => categoria.Nombre);
   }
 
-  // Método para obtener los datos de los gastos por categoría
   obtenerDatosGastosPorCategoria(): number[] {
     const datos: number[] = [];
     for (const categoria of this.categorias) {
-      // Filtrar los gastos por categoría y sumar sus cantidades
       const total = this.gastos
         .filter(gasto => gasto.ID_Categoria === categoria.ID_Categoria)
         .reduce((total, gasto) => total + parseFloat(gasto.Cantidad), 0);

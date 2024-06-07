@@ -184,4 +184,8 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     this.toastr.error('Error al editar el gasto!', 'Operación fallida');
   }
 
+  quitarFiltro() {
+    this.obtenerGastos();
+  }
+
 }

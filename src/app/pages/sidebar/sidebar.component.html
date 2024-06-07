@@ -22,18 +22,26 @@
       <div class="md:flex-col md:min-w-full flex flex-col list-none">
         <hr class="my-4 md:min-w-full" />
         <h6
-          class="md:min-w-full text-blueGray-500 text-l uppercase font-bold block pt-1 pb-4 no-underline"
+          class="md:min-w-full text-blueGray-500 text-l uppercase font-bold block pt-1 no-underline"
         >
-          Funciones 1
+          Funciones
         </h6>
         <!-- Si usuario.Administrador es false o undefined, muestra "Añadir gastos" -->
+        <a
+        routerLink="/home"
+        class="text-l uppercase py-3 font-medium block text-blueGray-800 hover:text-blueGray-500"
+        *ngIf="!usuario?.Administrador"
+        >
+        <i class="fa-solid fa-house mr-2 text-l text-blueGray-400" ></i>
+        HOME
+        </a>
         <a
         routerLink="/gastos"
         class="text-l uppercase py-3 font-medium block text-blueGray-800 hover:text-blueGray-500"
         *ngIf="!usuario?.Administrador"
         >
         <i class="fas fa-newspaper mr-2 text-l text-blueGray-400"></i>
-        Añadir gastos
+        GASTOS
         </a>
         
         <!-- Si usuario.Administrador es true, muestra "Administrar usuario" -->
@@ -57,7 +65,7 @@
 
         <hr class="my-4 md:min-w-full" />
         <h6
-          class="md:min-w-full text-blueGray-500 text-l uppercase font-bold block pt-1 pb-4 no-underline"
+          class="md:min-w-full text-blueGray-500 text-l uppercase font-bold block pt-1 no-underline"
         >
           Funciones del Perfil
         </h6>

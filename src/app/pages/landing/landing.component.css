@@ -551,3 +551,29 @@
 
 
 }
+
+/*PARA PANTALLAS MUCHO MAS PEQUEÑAS*/
+
+@media (max-width: 500px) {
+
+  .viaje{
+    height: 180vh;
+    width: 100vw;
+  }
+
+  .descubre {
+    height: 23vh;
+   }
+
+  .descubre__boton {
+    width: 30%;
+  }
+
+  .footer__redesInstagram,
+  .footer__redesFacebook,
+  .footer__redesTwitter {
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 20px;
+  }
+}

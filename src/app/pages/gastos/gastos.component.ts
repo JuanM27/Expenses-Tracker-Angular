@@ -62,7 +62,7 @@ export class GastosComponent {
     });
   }
 
-  abrirModalExportarGastps(): void {
+  abrirModalExportarGastos(): void {
     const dialogRef = this.dialog.open(ExportarGastoPdfFormComponent, {
       width: '400px',
     });
@@ -100,6 +100,10 @@ export class GastosComponent {
 
     showError() {
       this.toastr.error('Error al crear el gasto!', 'Operación fallida');
+    }
+
+    quitarFiltro(){
+      this.tablaGastosComponent.quitarFiltro();
     }
   }
 
