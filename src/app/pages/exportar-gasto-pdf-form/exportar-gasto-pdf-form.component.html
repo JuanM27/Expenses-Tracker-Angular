@@ -1,35 +1,44 @@
-<!-- TablaGastosComponent.html -->
+<!-- exportar-gasto-pdf-form.component.html -->
 <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div  tabindex="-1" aria-hidden="true" class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-6 w-full max-w-md relative">
-        <button type="button" class="absolute top-0 right-0 p-2 text-gray-400 hover:text-gray-900 dark:hover:text-white" (click)="onNoClick()">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          
-      <form [formGroup]="exportarGastoPdfForm" (ngSubmit)="exportarPdf()" class="p-4 md:p-5">
-          <div class="grid gap-4 mb-4 grid-cols-2">
-            <div class="col-span-2 sm:col-span-1">
-                <label for="ID_Categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
-                <select id="ID_Categoria" formControlName="ID_Categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                  <option value="null">Todas las Categoría</option>
-                  <option *ngFor="let categoria of categorias" [value]="categoria.ID_Categoria">{{ categoria.Nombre }}</option>
-                </select>
-              </div>
-              
-              <div class="col-span-2 sm:col-span-1">
-                <label for="Mes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mes</label>
-                <select id="Mes" formControlName="Mes" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                  <option value="null">Todos los meses</option>
-                  <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.nombre }}</option>
-                </select>
-              </div>
-                          
-          </div>
-          <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-              Exportar Gastos
-          </button>
-      </form>
-    </div>
+  <div tabindex="-1" aria-hidden="true" class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-6 w-full max-w-md relative">
+    <button type="button" class="absolute top-0 right-0 p-2 text-gray-400 hover:text-gray-900 dark:hover:text-white" (click)="onNoClick()">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <form [formGroup]="exportarGastoPdfForm" (ngSubmit)="exportarPdf()" class="p-4 md:p-5">
+      <div class="grid gap-4 mb-4 grid-cols-2">
+        <div class="col-span-2 sm:col-span-1">
+          <label for="ID_Categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
+          <select id="ID_Categoria" formControlName="ID_Categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+            <option value="null">Todas las Categoría</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria.ID_Categoria">{{ categoria.Nombre }}</option>
+          </select>
+        </div>
+        
+        <div class="col-span-2 sm:col-span-1">
+          <label for="Mes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mes</label>
+          <select id="Mes" formControlName="Mes" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+            <option value="null">Todos los meses</option>
+            <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.nombre }}</option>
+          </select>
+        </div>
+      </div>
+      
+      <button *ngIf="data.tipo === 'pdf'" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+        </svg>
+        Exportar Gastos a PDF
+      </button>
+      
+      <button *ngIf="data.tipo === 'excel'" type="button" (click)="exportarExcel()" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+        </svg>
+        Exportar Gastos a Excel
+      </button>
+    </form>
   </div>
+</div>

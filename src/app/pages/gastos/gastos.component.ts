@@ -62,12 +62,14 @@ export class GastosComponent {
     });
   }
 
-  abrirModalExportarGastos(): void {
+  abrirModalExportarGastos(tipo: string): void {
     const dialogRef = this.dialog.open(ExportarGastoPdfFormComponent, {
       width: '400px',
+      data: { tipo: tipo }
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
+      // Acciones después de cerrar el modal
     });
   }
 

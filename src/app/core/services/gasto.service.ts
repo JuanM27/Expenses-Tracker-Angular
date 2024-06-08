@@ -17,6 +17,7 @@ export class GastoService {
   private apiUrl2 = environment.urlNode + 'nuevoGasto';
   private apiUrl3 = environment.urlNode + 'gasto';
   private apiUrl4 = environment.urlNode + 'exportarpdf';
+  private apiUrl5 = environment.urlNode + 'exportarexcel';
   // Subject para emitir el nuevo gasto agregado
   private gastoAgregadoSubject: Subject<any> = new Subject<any>();
   private gastoBorradoSource = new Subject<void>();
@@ -98,6 +99,17 @@ export class GastoService {
     });
 
     return this.http.post(`${this.apiUrl4}/${this.idUsuario}`, datos, {
+      headers: headers,
+      responseType: 'blob'
+    });
+  }
+
+  exportarGastoExcelFormComponent(datos: any): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Authorization': `${this.token}`
+    });
+
+    return this.http.post(`${this.apiUrl5}/${this.idUsuario}`, datos, {
       headers: headers,
       responseType: 'blob'
     });

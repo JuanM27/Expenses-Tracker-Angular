@@ -78,6 +78,32 @@ export class ExportarGastoPdfFormComponent {
     }
   }
 
+  exportarExcel(){
+    if (this.exportarGastoPdfForm.valid) {
+      this.gastoService.exportarGastoExcelFormComponent(this.exportarGastoPdfForm.value).subscribe(
+        (response) => {
+          const blob = new Blob([response], { type: 'application/pdf' });
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'excelGastos.xlsx';
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          this.toastr.success('Gastos exportados correctamente');
+        },
+        (error) => {
+          console.error('Error exporting PDF:', error);
+          this.toastr.error('Error al exportar los gastos');
+        }
+      );
+
+      this.dialogRef.close(this.exportarGastoPdfForm.value);
+    } else {
+      this.toastr.error('Por favor, rellene todos los campos');
+    }
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
