@@ -188,4 +188,8 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
     this.obtenerGastos();
   }
 
+  getTotalGastos(): number {
+    return this.filteredGastos.reduce((total, gasto) => total + parseFloat(gasto.Cantidad.toString()), 0);
+  }
+
 }
