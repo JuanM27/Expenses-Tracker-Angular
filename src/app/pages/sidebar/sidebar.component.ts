@@ -28,6 +28,10 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+  getRouterLink() {
+    return this.usuario?.Administrador ? '/administrador' : '/home';
+  }
+
   cerrarSesion() {
     this.authService.logout();
   }

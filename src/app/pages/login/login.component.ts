@@ -24,7 +24,6 @@ export class LoginComponent {
       (response) => {
         if (response.ok === true && response.mensaje === "Login correcto") {
           if(response.data.Administrador == true){
-            console.log("Es administrador");
             this.router.navigate(["/administrador"]);
           }else{
             this.router.navigate(["/home"]);

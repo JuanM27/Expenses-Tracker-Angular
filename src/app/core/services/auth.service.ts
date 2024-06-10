@@ -9,7 +9,7 @@ export class AuthService {
   
   constructor(
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
   ) { }
 
   isLoggedIn(): boolean {
@@ -36,8 +36,11 @@ export class AuthService {
   }
 
   logout(): void {
-    // Eliminar el token almacenado en localStorage
     localStorage.removeItem('token');
+    // Eliminar el usuario almacenado en sessionStorage
+    console.log("Usuario", sessionStorage.getItem('usuario'));
+    sessionStorage.removeItem('usuario');
+    console.log("Usuario", sessionStorage.getItem('usuario'));
 
     this.router.navigate(['/login']); // Si estás utilizando Angular Router
   }

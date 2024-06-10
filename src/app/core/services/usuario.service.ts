@@ -46,7 +46,8 @@ export class UsuarioService {
           this.usuario = response.data as Usuario;
           this.token = response.token; // Suponiendo que el token está en la propiedad 'token' de la respuesta
           // Además, puedes almacenar el token en el almacenamiento local o en la sesión del navegador
-          localStorage.setItem('token', this.token); // Almacenando el token en el almacenamiento local
+          localStorage.setItem('token', this.token);
+           // Almacenando el token en el almacenamiento local
         }else if(response.ok===false&&response.mensaje==="Error de login, usuario o contraseña incorrecto"){
           //Poner un div de usuario y contraseña incorrectos
           console.log("Usuario o contraseña incorrectos")
