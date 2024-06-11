@@ -22,6 +22,7 @@ import { ModalBorrarComponent } from '../modal-borrar/modal-borrar.component';
 export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() searchQuery: string = '';
+  @Input() lastMonthOnly: boolean = false;
   categorias: Categoria[] = [];
   gastos: Gasto[] = [];
   filteredGastos: Gasto[] = [];
@@ -71,7 +72,7 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
 
   /**Si cambia algo en searchQuery se activa automaticamente la función de filtrado */
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['searchQuery']) {
+    if (changes['searchQuery'] || changes['lastMonthOnly']) { // Verificar si lastMonthOnly cambió
       this.filterGastos();
     }
   }
@@ -117,7 +118,11 @@ export class TablaGastosComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   filterGastos(): void {
-    if (this.searchQuery) {
+    if (this.lastMonthOnly) {
+      const lastMonthDate = new Date();
+      lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+      this.filteredGastos = this.gastos.filter(gasto => new Date(gasto.Fecha) > lastMonthDate);
+    } else if (this.searchQuery) { // Mantenemos la opción de búsqueda
       this.filteredGastos = this.gastos.filter(gasto =>
         gasto.Descripcion.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         this.obtenerNombreCategoria(gasto.ID_Categoria).toLowerCase().includes(this.searchQuery.toLowerCase()) ||

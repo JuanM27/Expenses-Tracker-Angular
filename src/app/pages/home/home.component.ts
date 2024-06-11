@@ -60,17 +60,21 @@ export class HomeComponent {
     const fechaActual = new Date();
     const añoActual = fechaActual.getFullYear();
     const mesActual = fechaActual.getMonth();
-  
-    // Filtrar los gastos por el mismo mes y año actual, luego sumar sus cantidades
-    this.gastoTotalMes = this.gastos
-      .filter(gasto => {
+    
+    // Filtrar los gastos por el mismo mes y año actual
+    const gastosMesActual = this.gastos.filter(gasto => {
         const fechaGasto = new Date(gasto.Fecha);
         const añoGasto = fechaGasto.getFullYear();
         const mesGasto = fechaGasto.getMonth();
         return añoGasto === añoActual && mesGasto === mesActual;
-      })
-      .reduce((total, gasto) => total + gasto.Cantidad, 0);
-  }  
+    });
+    
+    // Sumar las cantidades de los gastos del mes actual
+    this.gastoTotalMes = gastosMesActual.reduce((total, gasto) => total + Number(gasto.Cantidad), 0);
+    
+    console.log("El gasto del mes actual es: ", this.gastoTotalMes);
+}
+
 
   calcularPorcentajeGastoExtra(gastoTotalMesActual: number, gastoTotalMesAnterior: number): number {
     // Verificar si el gasto total del mes anterior es mayor que cero para evitar divisiones por cero
@@ -101,7 +105,7 @@ calcularGastoTotalMesAnterior(): void {
       const mesGasto = fechaGasto.getMonth();
       return añoGasto === añoAnterior && mesGasto === mesAnterior;
     })
-    .reduce((total, gasto) => total + gasto.Cantidad, 0);
+    .reduce((total, gasto) => total + Number(gasto.Cantidad), 0);
     console.log("El gasto del mes anterior es: ",this.gastoTotalMesAnterior)
 }
 

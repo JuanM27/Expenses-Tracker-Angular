@@ -22,11 +22,6 @@
               <span
                 class="w-12 h-12 text-sm text-white bg-blueGray-300 inline-flex items-center justify-center rounded-full"
               >
-                <!-- <img
-                  alt="..."
-                  class="w-full rounded-full align-middle border-none shadow-lg"
-                  src="https://demos.creative-tim.com/notus-pro-react/static/media/team-1-800x800.fa5a7ac2.jpg"
-                /> -->
                 <app-imagen-perfil></app-imagen-perfil>
               </span>
             </div>
@@ -240,7 +235,7 @@
           </div>
         </div>
       </div>      
-      <app-tabla-gastos></app-tabla-gastos>
+      <app-tabla-gastos [lastMonthOnly]="true"></app-tabla-gastos>
       <footer class="block py-4">
         <div class="container mx-auto px-4">
           <hr class="mb-4 border-b-1 border-blueGray-200" />

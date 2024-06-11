@@ -4,7 +4,10 @@
       <div class="px-6 py-4 border-0">
         <div class="flex flex-wrap items-center">
           <div class="relative w-full max-w-full flex-grow flex-1 items-center">
-            <h1 class="font-bold text-l text-blueGray-700">
+            <h1 class="font-bold text-l text-blueGray-700" *ngIf="lastMonthOnly">
+              Gastos del Mes
+            </h1>
+            <h1 class="font-bold text-l text-blueGray-700" *ngIf="!lastMonthOnly">
               Últimos Gastos
             </h1>
           </div>
