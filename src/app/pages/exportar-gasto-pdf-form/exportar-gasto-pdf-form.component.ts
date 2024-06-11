@@ -68,7 +68,11 @@ export class ExportarGastoPdfFormComponent {
         },
         (error) => {
           console.error('Error exporting PDF:', error);
-          this.toastr.error('Error al exportar los gastos');
+          if (error.status === 400 ){
+            this.toastr.warning('No hay gastos con ese mes o categoria');
+          }else{
+            this.toastr.error('Error al exportar los gastos');
+          }
         }
       );
 
@@ -94,7 +98,11 @@ export class ExportarGastoPdfFormComponent {
         },
         (error) => {
           console.error('Error exporting PDF:', error);
-          this.toastr.error('Error al exportar los gastos');
+          if (error.status === 400 ){
+            this.toastr.warning('No hay gastos con ese mes o categoria');
+          }else{
+            this.toastr.error('Error al exportar los gastos');
+          }
         }
       );
 

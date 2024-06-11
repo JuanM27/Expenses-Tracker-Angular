@@ -69,18 +69,22 @@ export class HomeComponent {
         const mesGasto = fechaGasto.getMonth();
         return añoGasto === añoActual && mesGasto === mesActual;
       })
-      .reduce((total, gasto) => total + parseFloat(gasto.Cantidad), 0);
+      .reduce((total, gasto) => total + gasto.Cantidad, 0);
   }  
 
   calcularPorcentajeGastoExtra(gastoTotalMesActual: number, gastoTotalMesAnterior: number): number {
-    // Calcular la diferencia entre los gastos del mes actual y del mes anterior
-    const diferencia = gastoTotalMesActual - gastoTotalMesAnterior;
-
-    // Calcular el porcentaje de diferencia en relación con los gastos del mes anterior
-    const porcentaje = parseFloat(((diferencia / gastoTotalMesAnterior) * 100).toFixed(2));
-
-    return porcentaje;
-}
+    // Verificar si el gasto total del mes anterior es mayor que cero para evitar divisiones por cero
+    if (gastoTotalMesAnterior > 0) {
+      // Calcular la diferencia entre los gastos del mes actual y del mes anterior
+      const diferencia = gastoTotalMesActual - gastoTotalMesAnterior;
+  
+      // Calcular el porcentaje de diferencia en relación con los gastos del mes anterior
+      return parseFloat(((diferencia / gastoTotalMesAnterior) * 100).toFixed(2));
+    } else {
+      // Si los gastos del mes anterior son cero, devolver un valor predeterminado (por ejemplo, 0)
+      return 0;
+    }
+  }
 
 calcularGastoTotalMesAnterior(): void {
   // Obtener el mes y el año del mes anterior
@@ -97,7 +101,7 @@ calcularGastoTotalMesAnterior(): void {
       const mesGasto = fechaGasto.getMonth();
       return añoGasto === añoAnterior && mesGasto === mesAnterior;
     })
-    .reduce((total, gasto) => total + parseFloat(gasto.Cantidad), 0);
+    .reduce((total, gasto) => total + gasto.Cantidad, 0);
     console.log("El gasto del mes anterior es: ",this.gastoTotalMesAnterior)
 }
 

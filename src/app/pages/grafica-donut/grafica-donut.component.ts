@@ -65,7 +65,7 @@ export class GraficaDonutComponent implements OnInit {
     for (const categoria of this.categorias) {
       const total = this.gastos
         .filter(gasto => gasto.ID_Categoria === categoria.ID_Categoria)
-        .reduce((total, gasto) => total + parseFloat(gasto.Cantidad), 0);
+        .reduce((total, gasto) => total + gasto.Cantidad, 0);
       datos.push(total);
     }
     return datos;

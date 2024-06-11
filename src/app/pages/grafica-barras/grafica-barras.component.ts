@@ -19,6 +19,7 @@ export class GraficaBarrasComponent implements OnInit {
   ngOnInit(): void {
     this.gastoService.gastosUsuario().subscribe((response) => {
       this.gastos = response.data;
+      console
       this.calcularGastosPorMes(); // Calcular gastos por mes después de obtener los datos
       this.actualizarGrafica(); // Actualizar la gráfica con los datos calculados
     });
@@ -28,7 +29,7 @@ export class GraficaBarrasComponent implements OnInit {
     // Recorrer los gastos y sumarlos por mes
     this.gastos.forEach(gasto => {
       const mes = new Date(gasto.Fecha).getMonth();
-      this.gastosPorMes[mes] += parseFloat(gasto.Cantidad);
+      this.gastosPorMes[mes] += gasto.Cantidad;
     });
   }
 
