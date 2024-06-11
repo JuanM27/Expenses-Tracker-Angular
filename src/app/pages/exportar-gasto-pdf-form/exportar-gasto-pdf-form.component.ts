@@ -42,6 +42,7 @@ export class ExportarGastoPdfFormComponent {
     this.exportarGastoPdfForm = this.fb.group({
       ID_Categoria: [null],
       Mes: [null],
+      Formato:[null]
     });
     
   }
@@ -82,35 +83,74 @@ export class ExportarGastoPdfFormComponent {
     }
   }
 
-  exportarExcel(){
+  exportarExcel() {
     if (this.exportarGastoPdfForm.valid) {
-      this.gastoService.exportarGastoExcelFormComponent(this.exportarGastoPdfForm.value).subscribe(
-        (response) => {
-          const blob = new Blob([response], { type: 'application/xlsx' });
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'excelGastos.xlsx';
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(url);
-          this.toastr.success('Gastos exportados correctamente');
-        },
-        (error) => {
-          console.error('Error exporting PDF:', error);
-          if (error.status === 400 ){
-            this.toastr.warning('No hay gastos con ese mes o categoria');
-          }else{
-            this.toastr.error('Error al exportar los gastos');
-          }
-        }
-      );
-
-      this.dialogRef.close(this.exportarGastoPdfForm.value);
+      const formato = this.exportarGastoPdfForm.value.Formato;
+      if (formato === 'xlsx') {
+        this.exportarGastoExcel();
+      } else if (formato === 'csv') {
+        this.exportarGastoCSV();
+      } else {
+        console.error('Formato no válido');
+        this.toastr.error('Formato de exportación no válido');
+      }
     } else {
       this.toastr.error('Por favor, rellene todos los campos');
     }
   }
+  
+  exportarGastoExcel() {
+    this.gastoService.exportarGastoExcelFormComponent(this.exportarGastoPdfForm.value).subscribe(
+      (response) => {
+        const blob = new Blob([response], { type: 'application/xlsx' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'excelGastos.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        this.toastr.success('Gastos exportados correctamente');
+      },
+      (error) => {
+        console.error('Error exporting Excel:', error);
+        if (error.status === 400) {
+          this.toastr.warning('No hay gastos con ese mes o categoría');
+        } else {
+          this.toastr.error('Error al exportar los gastos');
+        }
+      }
+    );
+  
+    this.dialogRef.close(this.exportarGastoPdfForm.value);
+  }
+  
+  exportarGastoCSV() {
+    this.gastoService.exportarGastoCSVFormComponent(this.exportarGastoPdfForm.value).subscribe(
+      (response) => {
+        const blob = new Blob([response], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'excelGastos.csv';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        this.toastr.success('Gastos exportados correctamente');
+      },
+      (error) => {
+        console.error('Error exporting CSV:', error);
+        if (error.status === 400) {
+          this.toastr.warning('No hay gastos con ese mes o categoría');
+        } else {
+          this.toastr.error('Error al exportar los gastos');
+        }
+      }
+    );
+  
+    this.dialogRef.close(this.exportarGastoPdfForm.value);
+  }
+  
 
   onNoClick(): void {
     this.dialogRef.close();
