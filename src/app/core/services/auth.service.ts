@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  
+  constructor(
+    private router: Router,
+    private usuarioService: UsuarioService,
+  ) { }
 
   isLoggedIn(): boolean {
     // Obtener el token almacenado en localStorage
@@ -27,4 +34,32 @@ export class AuthService {
     // Devolver false si no hay token o si ha expirado
     return false;
   }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    // Eliminar el usuario almacenado en sessionStorage
+    console.log("Usuario", sessionStorage.getItem('usuario'));
+    sessionStorage.removeItem('usuario');
+    console.log("Usuario", sessionStorage.getItem('usuario'));
+
+    this.router.navigate(['/login']); // Si estás utilizando Angular Router
+  }
+
+  async isAdmin(): Promise<boolean> {
+    const usuarioId = Number(sessionStorage.getItem("usuario"));
+    try {
+      const response = await this.usuarioService.buscarUsuario(usuarioId).toPromise();
+      console.log("Response", response.data.Administrador);
+      if (response.data.Administrador === true) {
+        return true;
+      }else{
+        console.log("No es administrador");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error verificando si es administrador", error);
+      return false;
+    }
+  }
+
 }

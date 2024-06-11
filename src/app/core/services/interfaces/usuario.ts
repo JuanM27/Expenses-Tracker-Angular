@@ -3,4 +3,6 @@ export interface Usuario {
   Nombre: string;
   Correo: string;
   Objetivo_Gasto: number;
+  ImagenPerfil: string;
+  Administrador: boolean;
 }

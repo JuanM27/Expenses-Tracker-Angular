@@ -36,7 +36,7 @@ export class GraficaBarrasComponent implements OnInit {
     const data = {
       labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
       datasets: [{
-        label: 'Gastos Mensuales',
+        label: 'Gastos Mensuales (€)',
         data: this.gastosPorMes,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
@@ -76,7 +76,11 @@ export class GraficaBarrasComponent implements OnInit {
 
     this.chart = new Chart("chart-barras", {
       type: 'bar' as ChartType,
-      data
+      data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
     });
   }
 }

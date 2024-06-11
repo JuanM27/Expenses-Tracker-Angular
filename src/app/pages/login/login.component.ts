@@ -23,7 +23,11 @@ export class LoginComponent {
     this.usuarioService.comprobarLogin(this.correo, this.contrasena).subscribe(
       (response) => {
         if (response.ok === true && response.mensaje === "Login correcto") {
-          this.router.navigate(["/home"]);
+          if(response.data.Administrador == true){
+            this.router.navigate(["/administrador"]);
+          }else{
+            this.router.navigate(["/home"]);
+          }
           sessionStorage.setItem('usuario', response.data.ID_Usuario);
         }
       },

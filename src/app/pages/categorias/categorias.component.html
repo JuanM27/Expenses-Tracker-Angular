@@ -1,0 +1,79 @@
+<div class="w-full relative flex flex-col min-h-screen">
+    <app-sidebar></app-sidebar> <!-- Añadida clase para margen izquierdo solo en dispositivos grandes -->
+    <!-- Termina navbar -->
+    <!-- Empieza tabla usuario -->    
+    <div class="pt-16 pb-8 pl-60 w-1/2">
+        <div class="px-5 md:px-6 mx-5 w-full">
+          <button
+            class="custom-btn-position block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            type="button" (click)="abrirModalAnadirCategoria()"
+          >
+            Añadir Categoria
+          </button>
+        </div>
+      </div>
+    <div class="relative md:ml-64 flex-grow">
+    <div class="w-full flex flex-wrap mt-8 "> 
+      <div class="w-full px-4">
+        <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white text-blueGray-700">
+          <div class="px-6 py-4 border-0">
+            <div class="flex flex-wrap items-center">
+              <div class="relative w-full max-w-full flex-grow flex-1">
+                <h3 class="font-bold text-lg text-blueGray-700">
+                  Categorias
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="block w-full overflow-x-auto max-h-[500px] overflow-y-auto p-4"> <!-- Añadido padding y eliminado margen izquierdo -->
+            <table class="items-center w-full bg-transparent border-collapse"> <!-- Eliminado margen izquierdo -->
+              <!-- Encabezado de la tabla -->
+              <thead>
+                <tr>
+                  <th class="px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200 w-[20%]">
+                    ID Categoria
+                  </th>
+                  <th class="px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200 w-[20%]">
+                    Nombre
+                  </th>
+                  <th class="px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200 w-[20%]">
+                    Descripción
+                  </th>
+                  <th class="px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200 w-[20%]">
+                    Acciones
+                  </th>
+                </tr>
+              </thead>
+              <!-- Cuerpo de la tabla -->
+              <tbody>
+                <tr>
+                  <tr *ngFor="let categoria of categorias">
+                  <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                    {{categoria.ID_Categoria}}
+                  </td>
+                  <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                    {{categoria.Nombre}}
+                  </td>
+                  <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                    {{categoria.Descripcion}}
+                  </td>
+                  <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                    <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" (click)="abrirModalEditarCategoria(categoria)">
+                      <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <span class="inline-block w-4"></span>
+                    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" (click)="borrarCategoria(categoria.ID_Categoria)">
+                    <!-- <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" (click)="borrarGasto(gasto.ID_Gasto)"> -->
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </td>                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
