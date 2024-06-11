@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditarUsuarioFormComponent } from '../editar-usuario-form/editar-usuario-form.component';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { ModalBorrarComponent } from '../modal-borrar/modal-borrar.component';
 
 @Component({
   selector: 'app-pagina-administrador',
@@ -76,17 +77,27 @@ export class PaginaAdministradorComponent {
   }
 
   borrarUsuario(idUsuario:number){
-    this.usuarioService.borrarUsuario(idUsuario).subscribe(
-      (response: any) => {
-        if(response.mensaje==="Usuario eliminado correctamente"){
-          this.toastr.success('Usuario eliminado correctamente', 'Usuario eliminado');
-        }else{
+    const dialogRef = this.dialog.open(ModalBorrarComponent, {
+      width: '300px',
+      data: { idUsuario }
+    });
 
-          this.toastr.error('Error al eliminar el usuario', 'Error');
-        }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.usuarioService.borrarUsuario(idUsuario).subscribe(
+          (response: any) => {
+            if(response.mensaje==="Usuario eliminado correctamente"){
+              this.toastr.success('Usuario eliminado correctamente', 'Usuario eliminado');
+            }else{
+    
+              this.toastr.error('Error al eliminar el usuario', 'Error');
+            }
+          }
+        );
+        console.log(`Gasto con ID ${idUsuario} eliminado`);
       }
-    );
-  }
+    });
+  } 
 
   filterUsuarios(): void {
     if (this.palabraBusqueda !== "") {

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { GastoService } from 'src/app/core/services/gasto.service';
@@ -19,6 +19,7 @@ import { ExportarGastoPdfFormComponent } from '../exportar-gasto-pdf-form/export
 export class GastosComponent {
 
   @ViewChild(TablaGastosComponent) tablaGastosComponent: TablaGastosComponent;
+  @ViewChild("searchInput") searchInput: ElementRef;
 
   ngAfterViewInit(){
     initFlowbite();
@@ -106,6 +107,8 @@ export class GastosComponent {
 
     quitarFiltro(){
       this.tablaGastosComponent.quitarFiltro();
+      this.searchInput.nativeElement.value="";
+      this.searchQuery="";
     }
   }
 
