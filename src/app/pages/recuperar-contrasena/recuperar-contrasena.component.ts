@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 
@@ -18,7 +18,8 @@ export class RecuperarContrasenaComponent {
   constructor(
     private route: ActivatedRoute,
     private usuarioService: UsuarioService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router,
   ) {
   }
 
@@ -40,6 +41,7 @@ export class RecuperarContrasenaComponent {
       (response) => {
         if(response.mensaje==="Contraseña cambiada"){
           this.toastr.success('Contraseña cambiada correctamente');
+          this.router.navigate(['/login']);
         }
       },
       (error) => {
