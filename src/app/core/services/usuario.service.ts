@@ -21,6 +21,8 @@ export class UsuarioService {
   private apiUrl4 = environment.urlNode+'actualizarPerfil';
   private apiUrl5 = environment.urlNode+'usuarios';
   private apiUrl6 = environment.urlNode+'editarUsuario';
+  private apiUrl7 = environment.urlNode+'recuperar-contrasena-correo';
+  private apiUrl8 = environment.urlNode+'cambiar-contrasena';
 
   private usuarioEditadoSource = new Subject<void>();
   private usuarioBorradoSource = new Subject<void>();
@@ -135,6 +137,18 @@ export class UsuarioService {
         this.usuarioBorradoSource.next();
       })
     );
+  }
+
+  recuperarContrasenaCorreo(correo: string): Observable<any> {
+    return this.http.post(`${this.apiUrl7}`, { correo });
+  }
+
+  cambiarContrasena(token: string, contrasena: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `${token}`
+    });
+
+    return this.http.put(`${this.apiUrl8}`, { contrasena ,token}, { headers});
   }
 
 }

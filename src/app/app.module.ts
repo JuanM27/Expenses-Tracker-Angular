@@ -30,6 +30,8 @@ import { AnadirCategoriaFormComponent } from './pages/anadir-categoria-form/anad
 import { EditarCategoriaFormComponent } from './pages/editar-categoria-form/editar-categoria-form.component';
 import { FiltrarGastoFechaFormComponent } from './pages/filtrar-gasto-fecha-form/filtrar-gasto-fecha-form.component';
 import { ExportarGastoPdfFormComponent } from './pages/exportar-gasto-pdf-form/exportar-gasto-pdf-form.component';
+import { RecuperarContrasenaComponent } from './pages/recuperar-contrasena/recuperar-contrasena.component';
+import { RecuperarContrasenaCorreoComponent } from './pages/recuperar-contrasena-correo/recuperar-contrasena-correo.component';
 
 
 @NgModule({
@@ -42,7 +44,7 @@ import { ExportarGastoPdfFormComponent } from './pages/exportar-gasto-pdf-form/e
     GastosComponent,
     SidebarComponent,    
     GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, PaginaAdministradorComponent,
-    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent, EditarFormComponent, AnadirFormComponent, ModalBorrarComponent, EditarUsuarioFormComponent, CategoriasComponent, AnadirCategoriaFormComponent, EditarCategoriaFormComponent, FiltrarGastoFechaFormComponent, ExportarGastoPdfFormComponent
+    GraficaBarrasComponent, GraficaDonutComponent, PerfilComponent, TablaGastosComponent, ImagenPerfilComponent, EditarFormComponent, AnadirFormComponent, ModalBorrarComponent, EditarUsuarioFormComponent, CategoriasComponent, AnadirCategoriaFormComponent, EditarCategoriaFormComponent, FiltrarGastoFechaFormComponent, ExportarGastoPdfFormComponent, RecuperarContrasenaComponent, RecuperarContrasenaCorreoComponent
   ],
   imports: [
     BrowserModule,

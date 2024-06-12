@@ -39,7 +39,7 @@
       </div>
       <!-- Forgot Password Link -->
       <div class="mb-6 text-blue-500">
-        <a href="#" class="hover:underline">¿Olvidaste la contraseña?</a>
+        <a [routerLink]="['/recuperar-contrasena-correo']" class="hover:underline">¿Olvidaste la contraseña?</a>
       </div>
       <div *ngIf="usuarioContrasenaIncorrecto" class="text-red-500 mt-2">
         {{ mensajeError }}

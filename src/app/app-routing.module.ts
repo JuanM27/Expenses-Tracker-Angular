@@ -10,6 +10,8 @@ import { AuthGuard } from './core/guards/auth.guards';
 import { PaginaAdministradorComponent } from './pages/pagina-administrador/pagina-administrador.component';
 import { AdminGuard } from './core/guards/admin.guars';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { RecuperarContrasenaComponent } from './pages/recuperar-contrasena/recuperar-contrasena.component';
+import { RecuperarContrasenaCorreoComponent } from './pages/recuperar-contrasena-correo/recuperar-contrasena-correo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' }, // Redirige a la ruta del login al inicio
@@ -20,7 +22,9 @@ const routes: Routes = [
   { path: 'gastos', component: GastosComponent,canActivate: [AuthGuard]},// Define la ruta para el componente de register
   { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
   { path: 'administrador', component: PaginaAdministradorComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'categorias', component: CategoriasComponent, canActivate: [AuthGuard, AdminGuard] }
+  { path: 'categorias', component: CategoriasComponent, canActivate: [AuthGuard, AdminGuard] },
+  {path: 'cambiar-contrasena/:token', component: RecuperarContrasenaComponent},
+  {path: 'recuperar-contrasena-correo', component: RecuperarContrasenaCorreoComponent}
 
   //
 ];
