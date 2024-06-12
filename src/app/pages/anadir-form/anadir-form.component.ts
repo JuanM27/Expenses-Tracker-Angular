@@ -1,18 +1,17 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CategoriaService } from 'src/app/core/services/categoria.service';
 import { GastoService } from 'src/app/core/services/gasto.service';
 import { Categoria } from 'src/app/core/services/interfaces/categoria';
-import { Gasto } from 'src/app/core/services/interfaces/gasto';
 
 @Component({
   selector: 'app-anadir-form',
   templateUrl: './anadir-form.component.html',
   styleUrls: ['./anadir-form.component.css']
 })
-export class AnadirFormComponent {
+export class AnadirFormComponent implements OnInit {
   anadirForm: FormGroup;
   categorias: Categoria[] = [];
 
@@ -25,13 +24,12 @@ export class AnadirFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.anadirForm = this.fb.group({
-      ID_Gasto: [null, Validators.required],
+      ID_Gasto: [null,],
       Descripcion: ['', Validators.required],
-      Cantidad: ['', [Validators.required, Validators.pattern('^[0-9]+$'), Validators.min(1)]],
+      Cantidad: ['', [Validators.required, Validators.min(0)]],
       Fecha: ['', Validators.required],
       ID_Categoria: ['', Validators.required],
     });
-    
   }
 
   ngOnInit(): void {
@@ -43,6 +41,11 @@ export class AnadirFormComponent {
   }
 
   anadirGasto(): void {
+    if (!this.anadirForm.valid) {
+      this.toastr.error('Por favor revise el formulario. Rellenelo entero y recuerde que la cantidad no puede ser negativa.', 'Error');
+      console.log('Estado del formulario:', this.anadirForm);
+      return;
+    }
     const nuevoGasto = this.anadirForm.value;
     this.gastoService.crearGasto(nuevoGasto).subscribe(response => {
       this.anadirForm.reset();
@@ -60,7 +63,6 @@ export class AnadirFormComponent {
     });
   }
 
-  
   showSuccess() {
     this.toastr.success('Gasto añadido con éxito!', 'Operación exitosa');
   }
