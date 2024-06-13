@@ -1,27 +1,61 @@
 # ExpensesTrackerAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
+### Jorge Bazaga Sarmiento y Juan Manuel Lanza Pérez
 
-## Development server
+## Descripción
+Nuestro proyecto final de desarrollo de aplicaciones web es un sistema de gestión de gastos, con el cual puedes crear, eliminar, actualizar y borrar gastos. También el usuario podrá registrar detalles específicos de cada transacción, como la fecha, la cantidad y la descripción del gasto. Estos gastos estarán categorizados para organizar y analizar mejor los gastos. Al final de los gastos habrá una suma total y otra para las categorías. Añadiendo además funcionalidades cómo exportación a pdf, excel, csv y envío de correo electrónico para recuperar contraseña. Así como una vista de administrador donde puedes ver los usuarios existentes, editarlos y borrarlos y añadir, borrar y editar categorías.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## URL
+Para ver la aplicación desplegada además del landing pulsa en el siguiente enlace: [expenses.duckdns.org](https://expenses.duckdns.org/)
 
-## Code scaffolding
+## Objetivos del proyecto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Nuestro objetivo con este proyecto es ayudar a las personas a llevar un seguimiento de sus propios gastos, siendo concientes cómo gastan su dinero, dándole la posibilidad de hacer un mejor uso del mismo.
 
-## Build
+## Tecnologías
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+ - Angular
+ - NodeJS
+ - NPM
+ - JavaScript
+ - TypeScript
+ - HTML
+ - CSS
+ - Tailwind CSS
+ - SQL
 
-## Running unit tests
+## Esquema E/R
+![imagen](https://github.com/jorgebazaga/Expenses-Tracker-Node/assets/80654534/b8b198eb-5e56-4ee6-9bb6-0a0302aaeb00)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Esquema Relacional
+![imagen](https://github.com/jorgebazaga/Expenses-Tracker-Node/assets/80654534/aead4844-cff4-47cb-a404-7643e60f1b21)
 
-## Running end-to-end tests
+## Video explicativo 
+[![video](https://img.youtube.com/vi/GJz5kDEvBQ4/0.jpg)](https://www.youtube.com/watch?v=GJz5kDEvBQ4)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## PDF Presentación
+[PresentacionTFG.pdf](https://github.com/user-attachments/files/15821719/PresentacionTFG.pdf)
 
-## Further help
+## Enlace Diseño Figma
+[Enlace a Figma](https://www.figma.com/design/hP7ZODTTjuwnoHhOQ42ayR/Expenses-Tracker?node-id=1-2&t=YhMOl2LjSQHeiaV4-1)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## PDF Diseño
+[Diseño de interfaces-TFG.pdf](https://github.com/user-attachments/files/15821713/Diseno.de.interfaces-TFG.pdf)
+
+## Diario
+[Diario TFG.pdf](https://github.com/user-attachments/files/15821994/Diario.TFG.pdf)
+
+## Enlace a notion 
+[Notion](https://jorgebazagasarmiento.notion.site/Proyecto-Final-ef982d670bad45eca1174ef4ffc930b3?pvs=4)
+
+## Checkpoint
+https://github.com/jorgebazaga/Expenses-Tracker-Node/assets/80654534/183b7443-e927-4b72-8830-bc1f5405bd2f
+
+## Bibliografía 
+Curso OpenWebinars:
+
+[Nodejs api rest jwt](https://openwebinars.net/academia/aprende/api-rest-node-express-jwt/)
+
+[Fundamentos angular](https://openwebinars.net/academia/portada/angular/)
+
+
